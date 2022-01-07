@@ -18,6 +18,19 @@
             rdfs:range :Dolcezza .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#haOrigineIn
+:haOrigineIn rdf:type owl:ObjectProperty ;
+             owl:inverseOf :origina ;
+             rdfs:domain :Vino ;
+             rdfs:range :Origine .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#origina
+:origina rdf:type owl:ObjectProperty ;
+         rdfs:domain :Origine ;
+         rdfs:range :Vino .
+
+
 #################################################################
 #    Classes
 #################################################################
