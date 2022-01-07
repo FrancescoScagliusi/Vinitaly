@@ -1,0 +1,473 @@
+@prefix : <http://www.semanticweb.org/pisca/vinitaly#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/pisca/vinitaly> .
+
+<http://www.semanticweb.org/pisca/vinitaly> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#haDolcezza
+:haDolcezza rdf:type owl:ObjectProperty ;
+            rdfs:domain :Vino ;
+            rdfs:range :Dolcezza .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#Abbinamento
+:Abbinamento rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoAntipasti
+:AbbinamentoAntipasti rdf:type owl:Class ;
+                      rdfs:subClassOf :Abbinamento .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoAntipastiCarne
+:AbbinamentoAntipastiCarne rdf:type owl:Class ;
+                           rdfs:subClassOf :AbbinamentoAntipasti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoAntipastiMare
+:AbbinamentoAntipastiMare rdf:type owl:Class ;
+                          rdfs:subClassOf :AbbinamentoAntipasti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoAntipastiTerra
+:AbbinamentoAntipastiTerra rdf:type owl:Class ;
+                           rdfs:subClassOf :AbbinamentoAntipasti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoPrimiPiatti
+:AbbinamentoPrimiPiatti rdf:type owl:Class ;
+                        rdfs:subClassOf :Abbinamento .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoPrimiPiattiCarne
+:AbbinamentoPrimiPiattiCarne rdf:type owl:Class ;
+                             rdfs:subClassOf :AbbinamentoPrimiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoPrimiPiattiMare
+:AbbinamentoPrimiPiattiMare rdf:type owl:Class ;
+                            rdfs:subClassOf :AbbinamentoPrimiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoPrimiPiattiTerra
+:AbbinamentoPrimiPiattiTerra rdf:type owl:Class ;
+                             rdfs:subClassOf :AbbinamentoPrimiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoSecondiPiatti
+:AbbinamentoSecondiPiatti rdf:type owl:Class ;
+                          rdfs:subClassOf :Abbinamento .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoSecondiPiattiCarne
+:AbbinamentoSecondiPiattiCarne rdf:type owl:Class ;
+                               rdfs:subClassOf :AbbinamentoSecondiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoSecondiPiattiMare
+:AbbinamentoSecondiPiattiMare rdf:type owl:Class ;
+                              rdfs:subClassOf :AbbinamentoSecondiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoSecondiPiattiTerra
+:AbbinamentoSecondiPiattiTerra rdf:type owl:Class ;
+                               rdfs:subClassOf :AbbinamentoSecondiPiatti .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Aroma
+:Aroma rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaPrimario
+:AromaPrimario rdf:type owl:Class ;
+               rdfs:subClassOf :Aroma .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaPrimarioErba
+:AromaPrimarioErba rdf:type owl:Class ;
+                   rdfs:subClassOf :AromaPrimario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaPrimarioFiore
+:AromaPrimarioFiore rdf:type owl:Class ;
+                    rdfs:subClassOf :AromaPrimario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaPrimarioFrutta
+:AromaPrimarioFrutta rdf:type owl:Class ;
+                     rdfs:subClassOf :AromaPrimario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaSecondario
+:AromaSecondario rdf:type owl:Class ;
+                 rdfs:subClassOf :Aroma .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaSecondarioLievito
+:AromaSecondarioLievito rdf:type owl:Class ;
+                        rdfs:subClassOf :AromaSecondario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaSecondarioMalolattica
+:AromaSecondarioMalolattica rdf:type owl:Class ;
+                            rdfs:subClassOf :AromaSecondario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaTerziario
+:AromaTerziario rdf:type owl:Class ;
+                rdfs:subClassOf :Aroma .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaTerziarioAltroInvecchiamento
+:AromaTerziarioAltroInvecchiamento rdf:type owl:Class ;
+                                   rdfs:subClassOf :AromaTerziario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaTerziarioMaturazioneInLegno
+:AromaTerziarioMaturazioneInLegno rdf:type owl:Class ;
+                                  rdfs:subClassOf :AromaTerziario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AromaTerziarioOssidazione
+:AromaTerziarioOssidazione rdf:type owl:Class ;
+                           rdfs:subClassOf :AromaTerziario .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Dolcezza
+:Dolcezza rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#DolcezzaVinoBollicine
+:DolcezzaVinoBollicine rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :brut
+                                                         :brut-nature
+                                                         :demi-sec
+                                                         :doux
+                                                         :dry
+                                                         :extra-brut
+                                                         :extra-dry
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :Dolcezza .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#DolcezzaVinoFermo
+:DolcezzaVinoFermo rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( :abboccato
+                                                     :amabile
+                                                     :dolce
+                                                     :secco
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf :Dolcezza .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Origine
+:Origine rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Class ;
+                               owl:oneOf ( :Abruzzo
+                                           :Basilicata
+                                           :Calabria
+                                           :Campania
+                                           :Emilia-Romagna
+                                           :Friuli-Venezia-Giulia
+                                           :Lazio
+                                           :Liguria
+                                           :Lombardia
+                                           :Marche
+                                           :Molise
+                                           :Piemonte
+                                           :Puglia
+                                           :Sardegna
+                                           :Sicilia
+                                           :Toscana
+                                           :Trentino-Alto-Adige
+                                           :Umbria
+                                           :ValleDAosta
+                                           :Veneto
+                                         )
+                             ] .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Vino
+:Vino rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBianco
+:VinoBianco rdf:type owl:Class ;
+            rdfs:subClassOf :Vino .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoFermo
+:VinoBiancoFermo rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :haDolcezza ;
+                                       owl:allValuesFrom :DolcezzaVinoFermo
+                                     ] ;
+                 rdfs:subClassOf :VinoBianco .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoFrizzante
+:VinoBiancoFrizzante rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :haDolcezza ;
+                                           owl:someValuesFrom :DolcezzaVinoFermo
+                                         ] ;
+                     rdfs:subClassOf :VinoBianco .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoSpumante
+:VinoBiancoSpumante rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :haDolcezza ;
+                                          owl:allValuesFrom :DolcezzaVinoBollicine
+                                        ] ;
+                    rdfs:subClassOf :VinoBianco .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosato
+:VinoRosato rdf:type owl:Class ;
+            rdfs:subClassOf :Vino .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoFermo
+:VinoRosatoFermo rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :haDolcezza ;
+                                       owl:allValuesFrom :DolcezzaVinoFermo
+                                     ] ;
+                 rdfs:subClassOf :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoFrizzante
+:VinoRosatoFrizzante rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :haDolcezza ;
+                                           owl:someValuesFrom :DolcezzaVinoFermo
+                                         ] ;
+                     rdfs:subClassOf :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoSpumante
+:VinoRosatoSpumante rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :haDolcezza ;
+                                          owl:allValuesFrom :DolcezzaVinoBollicine
+                                        ] ;
+                    rdfs:subClassOf :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosso
+:VinoRosso rdf:type owl:Class ;
+           rdfs:subClassOf :Vino .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoFermo
+:VinoRossoFermo rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :haDolcezza ;
+                                      owl:allValuesFrom :DolcezzaVinoFermo
+                                    ] ;
+                rdfs:subClassOf :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoFrizzante
+:VinoRossoFrizzante rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :haDolcezza ;
+                                          owl:someValuesFrom :DolcezzaVinoFermo
+                                        ] ;
+                    rdfs:subClassOf :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoSpumante
+:VinoRossoSpumante rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty :haDolcezza ;
+                                         owl:allValuesFrom :DolcezzaVinoBollicine
+                                       ] ;
+                   rdfs:subClassOf :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Vitigno
+:Vitigno rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VitignoBianco
+:VitignoBianco rdf:type owl:Class ;
+               rdfs:subClassOf :Vitigno .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VitignoRosso
+:VitignoRosso rdf:type owl:Class ;
+              rdfs:subClassOf :Vitigno .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#Abruzzo
+:Abruzzo rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Basilicata
+:Basilicata rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Calabria
+:Calabria rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Campania
+:Campania rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Emilia-Romagna
+:Emilia-Romagna rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Friuli-Venezia-Giulia
+:Friuli-Venezia-Giulia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Lazio
+:Lazio rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Liguria
+:Liguria rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Lombardia
+:Lombardia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Marche
+:Marche rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Molise
+:Molise rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Piemonte
+:Piemonte rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Puglia
+:Puglia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Sardegna
+:Sardegna rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Sicilia
+:Sicilia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Toscana
+:Toscana rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Trentino-Alto-Adige
+:Trentino-Alto-Adige rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Umbria
+:Umbria rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#ValleDAosta
+:ValleDAosta rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Veneto
+:Veneto rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#abboccato
+:abboccato rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#amabile
+:amabile rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#brut
+:brut rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#brut-nature
+:brut-nature rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#demi-sec
+:demi-sec rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#dolce
+:dolce rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#doux
+:doux rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#dry
+:dry rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#extra-brut
+:extra-brut rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#extra-dry
+:extra-dry rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#secco
+:secco rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :abboccato
+                        :amabile
+                        :dolce
+                        :secco
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :brut
+                        :brut-nature
+                        :demi-sec
+                        :doux
+                        :dry
+                        :extra-brut
+                        :extra-dry
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
