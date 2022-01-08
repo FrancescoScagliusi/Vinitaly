@@ -9,8 +9,67 @@
 <http://www.semanticweb.org/pisca/vinitaly> rdf:type owl:Ontology .
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoAlto
+:TassoAlcolemicoAlto rdf:type rdfs:Datatype ;
+                     owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                           owl:onDatatype xsd:double ;
+                                           owl:withRestrictions ( [ xsd:minInclusive "14.0"^^xsd:double
+                                                                  ]
+                                                                )
+                                         ] .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoLeggero
+:TassoAlcolemicoLeggero rdf:type rdfs:Datatype ;
+                        owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:double ;
+                                              owl:withRestrictions ( [ xsd:minInclusive "10.0"^^xsd:double
+                                                                     ]
+                                                                     [ xsd:maxInclusive "12.0"^^xsd:double
+                                                                     ]
+                                                                   )
+                                            ] .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoMedio
+:TassoAlcolemicoMedio rdf:type rdfs:Datatype ;
+                      owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                            owl:onDatatype xsd:double ;
+                                            owl:withRestrictions ( [ xsd:minInclusive "12.5"^^xsd:double
+                                                                   ]
+                                                                   [ xsd:maxInclusive "13.0"^^xsd:double
+                                                                   ]
+                                                                 )
+                                          ] .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoMedioAlto
+:TassoAlcolemicoMedioAlto rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#short
+xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                owl:onDatatype xsd:double ;
+                                owl:withRestrictions ( [ xsd:minInclusive "13.5"^^xsd:double
+                                                       ]
+                                                       [ xsd:maxInclusive "14.0"^^xsd:double
+                                                       ]
+                                                     )
+                              ] .
+
+
+#################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#haAroma
+:haAroma rdf:type owl:ObjectProperty ;
+         rdfs:domain :Vino ;
+         rdfs:range :Aroma .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haDolcezza
 :haDolcezza rdf:type owl:ObjectProperty ,
@@ -62,6 +121,16 @@
 :pressione rdf:type owl:DatatypeProperty ;
            rdfs:domain :Vino ;
            rdfs:range xsd:float .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#haTassoAlcolico
+:haTassoAlcolico rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Vino ;
+                 rdfs:range xsd:double .
 
 
 #################################################################
@@ -191,6 +260,15 @@
                            rdfs:subClassOf :AromaTerziario .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Corpo
+:Corpo rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :haTassoAlcolico ;
+                             owl:someValuesFrom :TassoAlcolemicoMedioAlto
+                           ] ;
+       rdfs:subClassOf :Struttura .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Dolcezza
 :Dolcezza rdf:type owl:Class .
 
@@ -222,6 +300,33 @@
                    rdfs:subClassOf :Dolcezza .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#GrandeStruttura
+:GrandeStruttura rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :haTassoAlcolico ;
+                                       owl:someValuesFrom :TassoAlcolemicoAlto
+                                     ] ;
+                 rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Leggero
+:Leggero rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :haTassoAlcolico ;
+                               owl:someValuesFrom :TassoAlcolemicoLeggero
+                             ] ;
+         rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#MedioCorpo
+:MedioCorpo rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty :haTassoAlcolico ;
+                                  owl:someValuesFrom :TassoAlcolemicoMedio
+                                ] ;
+            rdfs:subClassOf :Struttura .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Origine
 :Origine rdf:type owl:Class ;
          owl:equivalentClass [ rdf:type owl:Class ;
@@ -249,12 +354,18 @@
                              ] .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Struttura
+:Struttura rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Vino
 :Vino rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
+
                             owl:onProperty :prodottoDa ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :Vitigno
+
                           ] .
 
 
@@ -518,6 +629,11 @@
 :abboccato rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#alloro
+:alloro rdf:type owl:NamedIndividual ,
+                 :AromaPrimarioErba .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#amabile
 :amabile rdf:type owl:NamedIndividual .
 
@@ -528,6 +644,32 @@
 
 ###  http://www.semanticweb.org/pisca/vinitaly#brut-nature
 :brut-nature rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#burro
+:burro rdf:type owl:NamedIndividual ,
+                :AromaSecondarioMalolattica .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#cannella
+:cannella rdf:type owl:NamedIndividual ,
+                   :AromaSecondarioLievito ,
+                   :AromaTerziarioMaturazioneInLegno .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#caprifoglio
+:caprifoglio rdf:type owl:NamedIndividual ,
+                      :AromaPrimarioFiore .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#caramello
+:caramello rdf:type owl:NamedIndividual ,
+                    :AromaTerziarioAltroInvecchiamento .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#ciliegia
+:ciliegia rdf:type owl:NamedIndividual ,
+                   :AromaPrimarioFrutta .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#demi-sec
@@ -546,6 +688,11 @@
 :dry rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#erba_tagliata
+:erba_tagliata rdf:type owl:NamedIndividual ,
+                        :AromaPrimarioErba .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#extra-brut
 :extra-brut rdf:type owl:NamedIndividual .
 
@@ -554,8 +701,112 @@
 :extra-dry rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#formaggio
+:formaggio rdf:type owl:NamedIndividual ,
+                    :AromaSecondarioLievito .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#fragola
+:fragola rdf:type owl:NamedIndividual ,
+                  :AromaPrimarioFrutta .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#funghi
+:funghi rdf:type owl:NamedIndividual ,
+                 :AromaSecondarioLievito .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#garofano
+:garofano rdf:type owl:NamedIndividual ,
+                   :AromaSecondarioLievito .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#gelsomino
+:gelsomino rdf:type owl:NamedIndividual ,
+                    :AromaPrimarioFiore .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#mandorle
+:mandorle rdf:type owl:NamedIndividual ,
+                   :AromaTerziarioOssidazione .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#menta
+:menta rdf:type owl:NamedIndividual ,
+                :AromaPrimarioErba .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#nocciola
+:nocciola rdf:type owl:NamedIndividual ,
+                   :AromaSecondarioMalolattica ,
+                   :AromaTerziarioAltroInvecchiamento ,
+                   :AromaTerziarioOssidazione .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#noci
+:noci rdf:type owl:NamedIndividual ,
+               :AromaTerziarioOssidazione .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pane
+:pane rdf:type owl:NamedIndividual ,
+               :AromaSecondarioLievito ,
+               :AromaTerziarioAltroInvecchiamento .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#panna
+:panna rdf:type owl:NamedIndividual ,
+                :AromaSecondarioMalolattica .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pepe_nero
+:pepe_nero rdf:type owl:NamedIndividual ,
+                    :AromaSecondarioLievito .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pera
+:pera rdf:type owl:NamedIndividual ,
+               :AromaPrimarioFrutta .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pesca
+:pesca rdf:type owl:NamedIndividual ,
+                :AromaPrimarioFrutta .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#prezzemolo
+:prezzemolo rdf:type owl:NamedIndividual ,
+                     :AromaPrimarioErba .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#primitivo
+:primitivo rdf:type owl:NamedIndividual ,
+                    :VinoRossoFermo ;
+           :haTassoAlcolico "14.0"^^xsd:double .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#rosa
+:rosa rdf:type owl:NamedIndividual ,
+               :AromaPrimarioFiore .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#secco
 :secco rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#speziato
+:speziato rdf:type owl:NamedIndividual ,
+                   :AromaTerziarioMaturazioneInLegno .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#vaniglia
+:vaniglia rdf:type owl:NamedIndividual ,
+                   :AromaTerziarioMaturazioneInLegno .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#viola
+:viola rdf:type owl:NamedIndividual ,
+                :AromaPrimarioFiore .
 
 
 #################################################################
@@ -621,10 +872,53 @@
 
 
 [ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Abruzzo
+                        :Basilicata
+                        :Calabria
+                        :Campania
+                        :Emilia-Romagna
+                        :Friuli-Venezia-Giulia
+                        :Lazio
+                        :Liguria
+                        :Lombardia
+                        :Marche
+                        :Molise
+                        :Piemonte
+                        :Puglia
+                        :Sardegna
+                        :Sicilia
+                        :Toscana
+                        :Trentino-Alto-Adige
+                        :Umbria
+                        :ValleDAosta
+                        :Veneto
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Puglia
+                        :caprifoglio
+                        :gelsomino
+                        :viola
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( :abboccato
                         :amabile
                         :dolce
                         :secco
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :alloro
+                        :erba_tagliata
+                        :menta
+                        :prezzemolo
                       )
 ] .
 
@@ -637,6 +931,41 @@
                         :dry
                         :extra-brut
                         :extra-dry
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :burro
+                        :nocciola
+                        :panna
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :cannella
+                        :formaggio
+                        :funghi
+                        :garofano
+                        :pane
+                        :pepe_nero
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ciliegia
+                        :fragola
+                        :pera
+                        :pesca
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :mandorle
+                        :noci
                       )
 ] .
 
