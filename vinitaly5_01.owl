@@ -12,44 +12,6 @@
 #    Datatypes
 #################################################################
 
-###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoAlto
-:TassoAlcolemicoAlto rdf:type rdfs:Datatype ;
-                     owl:equivalentClass [ rdf:type rdfs:Datatype ;
-                                           owl:onDatatype xsd:double ;
-                                           owl:withRestrictions ( [ xsd:minInclusive "14.0"^^xsd:double
-                                                                  ]
-                                                                )
-                                         ] .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoLeggero
-:TassoAlcolemicoLeggero rdf:type rdfs:Datatype ;
-                        owl:equivalentClass [ rdf:type rdfs:Datatype ;
-                                              owl:onDatatype xsd:double ;
-                                              owl:withRestrictions ( [ xsd:minInclusive "10.0"^^xsd:double
-                                                                     ]
-                                                                     [ xsd:maxInclusive "12.0"^^xsd:double
-                                                                     ]
-                                                                   )
-                                            ] .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoMedio
-:TassoAlcolemicoMedio rdf:type rdfs:Datatype ;
-                      owl:equivalentClass [ rdf:type rdfs:Datatype ;
-                                            owl:onDatatype xsd:double ;
-                                            owl:withRestrictions ( [ xsd:minInclusive "12.5"^^xsd:double
-                                                                   ]
-                                                                   [ xsd:maxInclusive "13.0"^^xsd:double
-                                                                   ]
-                                                                 )
-                                          ] .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#TassoAlcolemicoMedioAlto
-:TassoAlcolemicoMedioAlto rdf:type rdfs:Datatype .
-
-
 ###  http://www.w3.org/2001/XMLSchema#short
 xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                 owl:onDatatype xsd:double ;
@@ -64,6 +26,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#aromatizza
+:aromatizza rdf:type owl:ObjectProperty ;
+            owl:inverseOf :haAroma ;
+            rdfs:domain :Aroma ;
+            rdfs:range :Vino .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haAroma
 :haAroma rdf:type owl:ObjectProperty ;
@@ -117,20 +86,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/pisca/vinitaly#gradoAlcolico
+:gradoAlcolico rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Vino ;
+               rdfs:range xsd:float .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#pressione
 :pressione rdf:type owl:DatatypeProperty ;
            rdfs:domain :Vino ;
            rdfs:range xsd:float .
-
-
-#################################################################
-#    Data properties
-#################################################################
-
-###  http://www.semanticweb.org/pisca/vinitaly#haTassoAlcolico
-:haTassoAlcolico rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Vino ;
-                 rdfs:range xsd:double .
 
 
 #################################################################
@@ -260,15 +225,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                            rdfs:subClassOf :AromaTerziario .
 
 
-###  http://www.semanticweb.org/pisca/vinitaly#Corpo
-:Corpo rdf:type owl:Class ;
-       owl:equivalentClass [ rdf:type owl:Restriction ;
-                             owl:onProperty :haTassoAlcolico ;
-                             owl:someValuesFrom :TassoAlcolemicoMedioAlto
-                           ] ;
-       rdfs:subClassOf :Struttura .
-
-
 ###  http://www.semanticweb.org/pisca/vinitaly#Dolcezza
 :Dolcezza rdf:type owl:Class .
 
@@ -298,33 +254,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                    )
                                        ] ;
                    rdfs:subClassOf :Dolcezza .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#GrandeStruttura
-:GrandeStruttura rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :haTassoAlcolico ;
-                                       owl:someValuesFrom :TassoAlcolemicoAlto
-                                     ] ;
-                 rdfs:subClassOf :Struttura .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#Leggero
-:Leggero rdf:type owl:Class ;
-         owl:equivalentClass [ rdf:type owl:Restriction ;
-                               owl:onProperty :haTassoAlcolico ;
-                               owl:someValuesFrom :TassoAlcolemicoLeggero
-                             ] ;
-         rdfs:subClassOf :Struttura .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#MedioCorpo
-:MedioCorpo rdf:type owl:Class ;
-            owl:equivalentClass [ rdf:type owl:Restriction ;
-                                  owl:onProperty :haTassoAlcolico ;
-                                  owl:someValuesFrom :TassoAlcolemicoMedio
-                                ] ;
-            rdfs:subClassOf :Struttura .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Origine
@@ -361,12 +290,24 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#Vino
 :Vino rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
-
-                            owl:onProperty :prodottoDa ;
+                            owl:onProperty :haAroma ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :Vitigno
-
+                            owl:onClass :AromaPrimario
                           ] .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoAromatizzato
+:VinoAromatizzato rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :haAroma ;
+                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass [ rdf:type owl:Class ;
+                                                      owl:unionOf ( :AromaSecondario
+                                                                    :AromaTerziario
+                                                                  )
+                                                    ]
+                                      ] ;
+                  rdfs:subClassOf :Vino .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBianco
@@ -395,6 +336,68 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoSpumante
 :VinoBiancoSpumante rdf:type owl:Class ;
                     rdfs:subClassOf :VinoBianco .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiCorpo
+:VinoDiCorpo rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :gradoAlcolico ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:float ;
+                                                        owl:withRestrictions ( [ xsd:minInclusive "13.5"^^xsd:float
+                                                                               ]
+                                                                               [ xsd:maxInclusive "14.0"^^xsd:float
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ;
+             rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiGrandeStruttura
+:VinoDiGrandeStruttura rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty :gradoAlcolico ;
+                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                  owl:onDatatype xsd:float ;
+                                                                  owl:withRestrictions ( [ xsd:minExclusive "14.0"^^xsd:float
+                                                                                         ]
+                                                                                       )
+                                                                ]
+                                           ] ;
+                       rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiMedioCorpo
+:VinoDiMedioCorpo rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :gradoAlcolico ;
+                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                             owl:onDatatype xsd:float ;
+                                                             owl:withRestrictions ( [ xsd:minInclusive "12.5"^^xsd:float
+                                                                                    ]
+                                                                                    [ xsd:maxInclusive "13.0"^^xsd:float
+                                                                                    ]
+                                                                                  )
+                                                           ]
+                                      ] ;
+                  rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoLeggero
+:VinoLeggero rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :gradoAlcolico ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:float ;
+                                                        owl:withRestrictions ( [ xsd:minInclusive "10.0"^^xsd:float
+                                                                               ]
+                                                                               [ xsd:maxInclusive "12.0"^^xsd:float
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ;
+             rdfs:subClassOf :Struttura .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosato
@@ -606,10 +609,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoPrimitivo
 :VinoPrimitivo rdf:type owl:NamedIndividual ,
-                        :Vino ;
+                        :VinoDiMedioCorpo ;
+               :haAroma :menta ;
                :haDolcezza :secco ;
                :prodottoDa :VitignoNegroamaro ,
                            :VitignoPrimitivo ;
+               :gradoAlcolico "12.0"^^xsd:float ;
                :pressione "0.0"^^xsd:float .
 
 
@@ -779,12 +784,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                      :AromaPrimarioErba .
 
 
-###  http://www.semanticweb.org/pisca/vinitaly#primitivo
-:primitivo rdf:type owl:NamedIndividual ,
-                    :VinoRossoFermo ;
-           :haTassoAlcolico "14.0"^^xsd:double .
-
-
 ###  http://www.semanticweb.org/pisca/vinitaly#rosa
 :rosa rdf:type owl:NamedIndividual ,
                :AromaPrimarioFiore .
@@ -865,13 +864,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( :VitignoNegroamaro
-                        :VitignoPrimitivo
-                      )
-] .
-
-
-[ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( :Abruzzo
                         :Basilicata
                         :Calabria
@@ -901,6 +893,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         :caprifoglio
                         :gelsomino
                         :viola
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :VitignoNegroamaro
+                        :VitignoPrimitivo
                       )
 ] .
 
