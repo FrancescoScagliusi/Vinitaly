@@ -311,10 +311,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Vino rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
 
-                            owl:onProperty :haAroma ;
-                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :AromaPrimario
-
                             owl:onProperty :prodottoDa ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :Vitigno
