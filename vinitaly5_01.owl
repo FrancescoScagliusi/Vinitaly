@@ -12,6 +12,7 @@
 #    Datatypes
 #################################################################
 
+
 ###  http://www.w3.org/2001/XMLSchema#short
 xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                 owl:onDatatype xsd:double ;
@@ -86,10 +87,29 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #    Data properties
 #################################################################
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#gradoAlcolico
 :gradoAlcolico rdf:type owl:DatatypeProperty ;
                rdfs:domain :Vino ;
                rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pressione
+:pressione rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Vino ;
+           rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#coloreBacca
+:coloreBacca rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Vitigno ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#haTassoAlcolico
+:haTassoAlcolico rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Vino ;
+                 rdfs:range xsd:double .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#pressione
@@ -290,9 +310,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#Vino
 :Vino rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
+
                             owl:onProperty :haAroma ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :AromaPrimario
+
+                            owl:onProperty :prodottoDa ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Vitigno
+
                           ] .
 
 
@@ -325,16 +351,64 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoFermo
 :VinoBiancoFermo rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :VinoBianco
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :haDolcezza ;
+                                                              owl:someValuesFrom :DolcezzaVinoFermo
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :pressione ;
+                                                              owl:hasValue "0.0"^^xsd:float
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
                  rdfs:subClassOf :VinoBianco .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoFrizzante
 :VinoBiancoFrizzante rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :VinoBianco
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :haDolcezza ;
+                                                                  owl:someValuesFrom :DolcezzaVinoBollicine
+                                                                ]
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :pressione ;
+                                                                  owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                       owl:onDatatype xsd:float ;
+                                                                                       owl:withRestrictions ( [ xsd:minExclusive "0.0"^^xsd:float
+                                                                                                              ]
+                                                                                                              [ xsd:maxInclusive "2.5"^^xsd:float
+                                                                                                              ]
+                                                                                                            )
+                                                                                     ]
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
                      rdfs:subClassOf :VinoBianco .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoSpumante
 :VinoBiancoSpumante rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :VinoBianco
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :haDolcezza ;
+                                                                 owl:someValuesFrom :DolcezzaVinoBollicine
+                                                               ]
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :pressione ;
+                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                      owl:onDatatype xsd:float ;
+                                                                                      owl:withRestrictions ( [ xsd:minExclusive "2.5"^^xsd:float
+                                                                                                             ]
+                                                                                                           )
+                                                                                    ]
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
                     rdfs:subClassOf :VinoBianco .
 
 
@@ -415,16 +489,64 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoFermo
 :VinoRosatoFermo rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :VinoRosato
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :haDolcezza ;
+                                                              owl:someValuesFrom :DolcezzaVinoFermo
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :pressione ;
+                                                              owl:hasValue "0.0"^^xsd:float
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
                  rdfs:subClassOf :VinoRosato .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoFrizzante
 :VinoRosatoFrizzante rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :VinoRosato
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :haDolcezza ;
+                                                                  owl:someValuesFrom :DolcezzaVinoBollicine
+                                                                ]
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :pressione ;
+                                                                  owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                       owl:onDatatype xsd:float ;
+                                                                                       owl:withRestrictions ( [ xsd:minExclusive "0.0"^^xsd:float
+                                                                                                              ]
+                                                                                                              [ xsd:maxInclusive "2.5"^^xsd:float
+                                                                                                              ]
+                                                                                                            )
+                                                                                     ]
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
                      rdfs:subClassOf :VinoRosato .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoSpumante
 :VinoRosatoSpumante rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :VinoRosato
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :haDolcezza ;
+                                                                 owl:someValuesFrom :DolcezzaVinoBollicine
+                                                               ]
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :pressione ;
+                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                      owl:onDatatype xsd:float ;
+                                                                                      owl:withRestrictions ( [ xsd:minExclusive "2.5"^^xsd:float
+                                                                                                             ]
+                                                                                                           )
+                                                                                    ]
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
                     rdfs:subClassOf :VinoRosato .
 
 
@@ -510,16 +632,28 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoBaccaBianca
 :VitignoBaccaBianca rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :coloreBacca ;
+                                          owl:hasValue "bianca"
+                                        ] ;
                     rdfs:subClassOf :Vitigno .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoBaccaRosa
 :VitignoBaccaRosa rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :coloreBacca ;
+                                        owl:hasValue "rosa"
+                                      ] ;
                   rdfs:subClassOf :Vitigno .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoBaccaRossa
 :VitignoBaccaRossa rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty :coloreBacca ;
+                                         owl:hasValue "rossa"
+                                       ] ;
                    rdfs:subClassOf :Vitigno .
 
 
@@ -620,14 +754,22 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoNegroamaro
 :VitignoNegroamaro rdf:type owl:NamedIndividual ,
-                            :VitignoBaccaRossa ;
-                   :haOrigineIn :Puglia .
+                            :Vitigno ;
+                   :haOrigineIn :Puglia ;
+                   :coloreBacca "rossa"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoPrimitivo
 :VitignoPrimitivo rdf:type owl:NamedIndividual ,
-                           :VitignoBaccaRossa ;
-                  :haOrigineIn :Puglia .
+                           :Vitigno ;
+                  :haOrigineIn :Puglia ;
+                  :coloreBacca "rossa"^^xsd:string .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VitignoRosso
+:VitignoRosso rdf:type owl:NamedIndividual ,
+                       :Vitigno ;
+              :coloreBacca "rossa"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#abboccato
