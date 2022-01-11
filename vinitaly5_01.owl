@@ -12,7 +12,6 @@
 #    Datatypes
 #################################################################
 
-
 ###  http://www.w3.org/2001/XMLSchema#short
 xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                 owl:onDatatype xsd:double ;
@@ -30,9 +29,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#aromatizza
 :aromatizza rdf:type owl:ObjectProperty ;
-            owl:inverseOf :haAroma ;
-            rdfs:domain :Aroma ;
-            rdfs:range :Vino .
+            owl:inverseOf :haAroma .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#determina
+:determina rdf:type owl:ObjectProperty ;
+           owl:inverseOf :èDeterminato .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haAroma
@@ -42,8 +44,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haDolcezza
-:haDolcezza rdf:type owl:ObjectProperty ,
-                     owl:InverseFunctionalProperty ;
+:haDolcezza rdf:type owl:ObjectProperty ;
             rdfs:domain :Vino ;
             rdfs:range :Dolcezza .
 
@@ -56,24 +57,32 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
              rdfs:range :Origine .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#haStruttura
+:haStruttura rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Vino ;
+             rdfs:range :Struttura .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#origina
-:origina rdf:type owl:ObjectProperty ;
-         rdfs:domain :Origine ;
-         rdfs:range :Vitigno .
+:origina rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#prodottoDa
-:prodottoDa rdf:type owl:ObjectProperty ;
-            owl:inverseOf :produce ;
-            rdfs:domain :Vino ;
-            rdfs:range :Vitigno .
+:prodottoDa rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#produce
 :produce rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf owl:topObjectProperty ;
          rdfs:domain :Vitigno ;
          rdfs:range :Vino .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#vinoAbbinatoA
+:vinoAbbinatoA rdf:type owl:ObjectProperty ;
+               owl:propertyChainAxiom ( :haStruttura
+                                        :determina
+                                      ) .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoOriginatoIn
@@ -83,27 +92,26 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                         ) .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#èDeterminato
+:èDeterminato rdf:type owl:ObjectProperty ;
+              rdfs:domain :Abbinamento ;
+              rdfs:range :Struttura .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/pisca/vinitaly#coloreBacca
+:coloreBacca rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Vitigno ;
+             rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#gradoAlcolico
 :gradoAlcolico rdf:type owl:DatatypeProperty ;
                rdfs:domain :Vino ;
                rdfs:range xsd:float .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#pressione
-:pressione rdf:type owl:DatatypeProperty ;
-           rdfs:domain :Vino ;
-           rdfs:range xsd:float .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#coloreBacca
-:coloreBacca rdf:type owl:DatatypeProperty ;
-             rdfs:domain :Vitigno ;
-             rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haTassoAlcolico
@@ -128,6 +136,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoAntipasti
 :AbbinamentoAntipasti rdf:type owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                            owl:onProperty :èDeterminato ;
+                                            owl:someValuesFrom :Leggera
+                                          ] ;
                       rdfs:subClassOf :Abbinamento .
 
 
@@ -148,6 +160,17 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoPrimiPiatti
 :AbbinamentoPrimiPiatti rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Class ;
+                                              owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :èDeterminato ;
+                                                              owl:someValuesFrom :DiCorpo
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :èDeterminato ;
+                                                              owl:someValuesFrom :DiMedioCorpo
+                                                            ]
+                                                          )
+                                            ] ;
                         rdfs:subClassOf :Abbinamento .
 
 
@@ -168,6 +191,21 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#AbbinamentoSecondiPiatti
 :AbbinamentoSecondiPiatti rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :èDeterminato ;
+                                                                owl:someValuesFrom :DiCorpo
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :èDeterminato ;
+                                                                owl:someValuesFrom :DiGrandeStruttura
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :èDeterminato ;
+                                                                owl:someValuesFrom :DiMedioCorpo
+                                                              ]
+                                                            )
+                                              ] ;
                           rdfs:subClassOf :Abbinamento .
 
 
@@ -245,6 +283,80 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                            rdfs:subClassOf :AromaTerziario .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#DiCorpo
+:DiCorpo rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :determina ;
+                                                      owl:someValuesFrom :AbbinamentoSecondiPiatti
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :gradoAlcolico ;
+                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                           owl:onDatatype xsd:float ;
+                                                                           owl:withRestrictions ( [ xsd:minInclusive "13.5"^^xsd:float
+                                                                                                  ]
+                                                                                                  [ xsd:maxInclusive "14.0"^^xsd:float
+                                                                                                  ]
+                                                                                                )
+                                                                         ]
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#DiGrandeStruttura
+:DiGrandeStruttura rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :determina ;
+                                                                owl:someValuesFrom :AbbinamentoSecondiPiatti
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :gradoAlcolico ;
+                                                                owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                     owl:onDatatype xsd:float ;
+                                                                                     owl:withRestrictions ( [ xsd:minExclusive "14.0"^^xsd:float
+                                                                                                            ]
+                                                                                                          )
+                                                                                   ]
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :Struttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#DiMedioCorpo
+:DiMedioCorpo rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Class ;
+                                                           owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty :determina ;
+                                                                           owl:someValuesFrom :AbbinamentoPrimiPiatti
+                                                                         ]
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty :determina ;
+                                                                           owl:someValuesFrom :AbbinamentoSecondiPiatti
+                                                                         ]
+                                                                       )
+                                                         ]
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :gradoAlcolico ;
+                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                owl:onDatatype xsd:float ;
+                                                                                owl:withRestrictions ( [ xsd:minInclusive "12.5"^^xsd:float
+                                                                                                       ]
+                                                                                                       [ xsd:maxInclusive "13.0"^^xsd:float
+                                                                                                       ]
+                                                                                                     )
+                                                                              ]
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Struttura .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Dolcezza
 :Dolcezza rdf:type owl:Class .
 
@@ -274,6 +386,29 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                    )
                                        ] ;
                    rdfs:subClassOf :Dolcezza .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Leggera
+:Leggera rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :determina ;
+                                                      owl:someValuesFrom :AbbinamentoAntipasti
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :gradoAlcolico ;
+                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                           owl:onDatatype xsd:float ;
+                                                                           owl:withRestrictions ( [ xsd:minInclusive "10.0"^^xsd:float
+                                                                                                  ]
+                                                                                                  [ xsd:maxInclusive "12.0"^^xsd:float
+                                                                                                  ]
+                                                                                                )
+                                                                         ]
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf :Struttura .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Origine
@@ -309,12 +444,18 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Vino
 :Vino rdf:type owl:Class ;
-      owl:equivalentClass [ rdf:type owl:Restriction ;
-
-                            owl:onProperty :prodottoDa ;
-                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :Vitigno
-
+      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :haAroma ;
+                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onClass :AromaPrimario
+                                                 ]
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :prodottoDa ;
+                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onClass :Vitigno
+                                                 ]
+                                               ) ;
+                            rdf:type owl:Class
                           ] .
 
 
@@ -406,68 +547,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                           rdf:type owl:Class
                                         ] ;
                     rdfs:subClassOf :VinoBianco .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#VinoDiCorpo
-:VinoDiCorpo rdf:type owl:Class ;
-             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                   owl:onProperty :gradoAlcolico ;
-                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                        owl:onDatatype xsd:float ;
-                                                        owl:withRestrictions ( [ xsd:minInclusive "13.5"^^xsd:float
-                                                                               ]
-                                                                               [ xsd:maxInclusive "14.0"^^xsd:float
-                                                                               ]
-                                                                             )
-                                                      ]
-                                 ] ;
-             rdfs:subClassOf :Struttura .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#VinoDiGrandeStruttura
-:VinoDiGrandeStruttura rdf:type owl:Class ;
-                       owl:equivalentClass [ rdf:type owl:Restriction ;
-                                             owl:onProperty :gradoAlcolico ;
-                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                  owl:onDatatype xsd:float ;
-                                                                  owl:withRestrictions ( [ xsd:minExclusive "14.0"^^xsd:float
-                                                                                         ]
-                                                                                       )
-                                                                ]
-                                           ] ;
-                       rdfs:subClassOf :Struttura .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#VinoDiMedioCorpo
-:VinoDiMedioCorpo rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty :gradoAlcolico ;
-                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                             owl:onDatatype xsd:float ;
-                                                             owl:withRestrictions ( [ xsd:minInclusive "12.5"^^xsd:float
-                                                                                    ]
-                                                                                    [ xsd:maxInclusive "13.0"^^xsd:float
-                                                                                    ]
-                                                                                  )
-                                                           ]
-                                      ] ;
-                  rdfs:subClassOf :Struttura .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#VinoLeggero
-:VinoLeggero rdf:type owl:Class ;
-             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                   owl:onProperty :gradoAlcolico ;
-                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                        owl:onDatatype xsd:float ;
-                                                        owl:withRestrictions ( [ xsd:minInclusive "10.0"^^xsd:float
-                                                                               ]
-                                                                               [ xsd:maxInclusive "12.0"^^xsd:float
-                                                                               ]
-                                                                             )
-                                                      ]
-                                 ] ;
-             rdfs:subClassOf :Struttura .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosato
@@ -661,6 +740,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Abruzzo rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#AntipastoCarne
+:AntipastoCarne rdf:type owl:NamedIndividual ,
+                         :AbbinamentoAntipastiCarne .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#AntipastoPesce
+:AntipastoPesce rdf:type owl:NamedIndividual ,
+                         :AbbinamentoAntipastiMare .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Basilicata
 :Basilicata rdf:type owl:NamedIndividual .
 
@@ -705,6 +794,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Piemonte rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#PrimoCarne
+:PrimoCarne rdf:type owl:NamedIndividual ,
+                     :AbbinamentoPrimiPiattiCarne .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#PrimoPesce
+:PrimoPesce rdf:type owl:NamedIndividual ,
+                     :AbbinamentoPrimiPiattiMare .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Puglia
 :Puglia rdf:type owl:NamedIndividual .
 
@@ -737,11 +836,33 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Veneto rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiCorpo
+:VinoDiCorpo rdf:type owl:NamedIndividual ,
+                      :DiCorpo .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiGrandeStruttura
+:VinoDiGrandeStruttura rdf:type owl:NamedIndividual ,
+                                :DiGrandeStruttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoDiMedioCorpo
+:VinoDiMedioCorpo rdf:type owl:NamedIndividual ,
+                           :DiMedioCorpo .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoLeggero
+:VinoLeggero rdf:type owl:NamedIndividual ,
+                      :Leggera ;
+             :determina :AntipastoCarne ,
+                        :AntipastoPesce .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoPrimitivo
-:VinoPrimitivo rdf:type owl:NamedIndividual ,
-                        :VinoDiMedioCorpo ;
-               :haAroma :menta ;
+:VinoPrimitivo rdf:type owl:NamedIndividual ;
+               :haAroma :cannella ;
                :haDolcezza :secco ;
+               :haStruttura :VinoLeggero ;
                :prodottoDa :VitignoNegroamaro ,
                            :VitignoPrimitivo ;
                :gradoAlcolico "12.0"^^xsd:float ;
@@ -957,6 +1078,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                 :Origine
                 :Vino
                 :Vitigno
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DiCorpo
+                :DiGrandeStruttura
+                :DiMedioCorpo
+                :Leggera
               )
 ] .
 
