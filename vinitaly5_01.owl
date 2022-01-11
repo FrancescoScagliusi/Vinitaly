@@ -512,13 +512,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                    owl:onClass :Vitigno
                                                  ]
                                                ) ;
-                            rdf:type owl:Class
-      owl:equivalentClass [ rdf:type owl:Restriction ;
-                            owl:onProperty :prodottoDa ;
-                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :Vitigno
-                          ] .
-
+                            rdf:type owl:Class ] .
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoAromatizzato
 :VinoAromatizzato rdf:type owl:Class ;
