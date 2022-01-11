@@ -122,7 +122,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :èDeterminato rdf:type owl:ObjectProperty ;
               rdfs:domain :Abbinamento ;
               rdfs:range :Struttura .
-=======
+
 ###  http://www.semanticweb.org/pisca/vinitaly#éproprietarioDi
 :éproprietarioDi rdf:type owl:ObjectProperty ;
                  rdfs:domain :Produttore ;
@@ -135,7 +135,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #################################################################
 
 
-=======
 ###  http://www.semanticweb.org/pisca/vinitaly#annata
 :annata rdf:type owl:DatatypeProperty ;
         rdfs:domain :Vino ;
@@ -150,7 +149,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 
-=======
+
 ###  http://www.semanticweb.org/pisca/vinitaly#denominazione
 :denominazione rdf:type owl:DatatypeProperty ;
                rdfs:domain :Vino ;
@@ -514,7 +513,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                  ]
                                                ) ;
                             rdf:type owl:Class
-=======
       owl:equivalentClass [ rdf:type owl:Restriction ;
                             owl:onProperty :prodottoDa ;
                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
