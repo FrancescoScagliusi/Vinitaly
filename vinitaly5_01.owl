@@ -6,7 +6,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.semanticweb.org/pisca/vinitaly> .
 
-<http://www.semanticweb.org/pisca/vinitaly> rdf:type owl:Ontology .
+<http://www.semanticweb.org/pisca/vinitaly> rdf:type owl:Ontology ;
+                                             owl:imports <http://www.ontologydesignpatterns.org/cp/owl/set.owl> .
 
 #################################################################
 #    Datatypes
@@ -26,6 +27,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> rdfs:domain :Cantina ;
+                                                                              rdfs:range :Vino .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdfs:domain :Vino ;
+                                                                               rdfs:range :Cantina .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#aromatizza
 :aromatizza rdf:type owl:ObjectProperty ;
@@ -68,6 +79,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :origina rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#possedutaDa
+:possedutaDa rdf:type owl:ObjectProperty ;
+             owl:inverseOf :éproprietarioDi ;
+             rdfs:domain :Cantina ;
+             rdfs:range :Produttore .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#prodottoDa
 :prodottoDa rdf:type owl:ObjectProperty .
 
@@ -78,11 +96,18 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
          rdfs:range :Vino .
 
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoAbbinatoA
 :vinoAbbinatoA rdf:type owl:ObjectProperty ;
                owl:propertyChainAxiom ( :haStruttura
                                         :determina
                                       ) .
+
+###  http://www.semanticweb.org/pisca/vinitaly#realizzatoDa
+:realizzatoDa rdf:type owl:ObjectProperty ;
+              owl:propertyChainAxiom ( <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf>
+                                       :possedutaDa
+                                     ) .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoOriginatoIn
@@ -92,20 +117,45 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                         ) .
 
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#èDeterminato
 :èDeterminato rdf:type owl:ObjectProperty ;
               rdfs:domain :Abbinamento ;
               rdfs:range :Struttura .
+=======
+###  http://www.semanticweb.org/pisca/vinitaly#éproprietarioDi
+:éproprietarioDi rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Produttore ;
+                 rdfs:range :Cantina .
+
 
 
 #################################################################
 #    Data properties
 #################################################################
 
+
+=======
+###  http://www.semanticweb.org/pisca/vinitaly#annata
+:annata rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Vino ;
+        rdfs:range xsd:dateTime .
+
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#coloreBacca
 :coloreBacca rdf:type owl:DatatypeProperty ;
              rdfs:domain :Vitigno ;
              rdfs:range xsd:string .
+
+
+
+=======
+###  http://www.semanticweb.org/pisca/vinitaly#denominazione
+:denominazione rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Vino ;
+               rdfs:range xsd:string .
+
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#gradoAlcolico
@@ -356,6 +406,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                   ] ;
               rdfs:subClassOf :Struttura .
 
+###  http://www.semanticweb.org/pisca/vinitaly#Cantina
+:Cantina rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Dolcezza
 :Dolcezza rdf:type owl:Class .
@@ -438,6 +492,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                              ] .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Produttore
+:Produttore rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Struttura
 :Struttura rdf:type owl:Class .
 
@@ -456,6 +514,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                  ]
                                                ) ;
                             rdf:type owl:Class
+=======
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty :prodottoDa ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Vitigno
                           ] .
 
 
@@ -803,9 +866,23 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :PrimoPesce rdf:type owl:NamedIndividual ,
                      :AbbinamentoPrimiPiattiMare .
 
+###  http://www.semanticweb.org/pisca/vinitaly#PrimitivoDiManduria
+:PrimitivoDiManduria rdf:type owl:NamedIndividual ,
+                              :Vino ;
+                     <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaSanMarzano ;
+                     :haDolcezza :secco ;
+                     :prodottoDa :VitignoPrimitivo ;
+                     :gradoAlcolico "14.5"^^xsd:float ;
+                     :pressione "0.0"^^xsd:float .
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Puglia
 :Puglia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#SanMarzano
+:SanMarzano rdf:type owl:NamedIndividual ,
+                     :Produttore ;
+            :éproprietarioDi :cantinaSanMarzano .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Sardegna
@@ -919,6 +996,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :cannella rdf:type owl:NamedIndividual ,
                    :AromaSecondarioLievito ,
                    :AromaTerziarioMaturazioneInLegno .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#cantinaSanMarzano
+:cantinaSanMarzano rdf:type owl:NamedIndividual ,
+                            :Cantina .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#caprifoglio
