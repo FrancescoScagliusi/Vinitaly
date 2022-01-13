@@ -65,7 +65,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#haOrigineIn
 :haOrigineIn rdf:type owl:ObjectProperty ;
              owl:inverseOf :origina ;
-             rdf:type owl:TransitiveProperty ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:domain :Vitigno ;
              rdfs:range :Origine ;
              rdfs:comment "Collega il Vitigno alla sua regione italiana di origine"@it ;
@@ -76,6 +76,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :haStruttura rdf:type owl:ObjectProperty ,
                       owl:FunctionalProperty ;
              rdfs:domain :Vino .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#origina
 :origina rdf:type owl:ObjectProperty ;
@@ -159,14 +160,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :vinoOriginatoIn rdf:type owl:ObjectProperty ;
                  owl:propertyChainAxiom ( :prodottoDa
                                           :haOrigineIn
-                                        );
+                                        ) ;
                  rdfs:comment "Property chain che collega un vino alla sua regione di origine, passando per il vitigno"@it ;
                  rdfs:label "vino originato in"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#éConsigliato
-:éConsigliato rdf:type owl:ObjectProperty ,
-                       owl:TransitiveProperty ;
+:éConsigliato rdf:type owl:ObjectProperty ;
               rdfs:domain :Portata ;
               rdfs:range :Vino ;
               rdfs:comment "Collega un tipo portata (es: Antipasto Carne, Primo di pesce) ad un tipo di vino consigliato (es: Vino bianco leggero)"@it ;
