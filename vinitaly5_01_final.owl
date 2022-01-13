@@ -57,7 +57,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :haDosaggio rdf:type owl:ObjectProperty ,
                      owl:FunctionalProperty ;
             rdfs:domain :Vino ;
-            rdfs:range :Dosaggio .
+            rdfs:range :Dosaggio ;
+            rdfs:comment "Collega il vino ad un tipo di dosaggio (secco, brut, dry, ...)"@it ;
+            rdfs:label "ha dosaggio"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haOrigineIn
@@ -65,7 +67,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
              owl:inverseOf :origina ;
              rdf:type owl:TransitiveProperty ;
              rdfs:domain :Vitigno ;
-             rdfs:range :Origine .
+             rdfs:range :Origine ;
+             rdfs:comment "Collega il Vitigno alla sua regione italiana di origine"@it ;
+             rdfs:label "haOrigineIn"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#haStruttura
@@ -73,14 +77,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                       owl:FunctionalProperty ;
              rdfs:domain :Vino .
 
-
-###  http://www.semanticweb.org/pisca/vinitaly#momentoPortata
-:momentoPortata rdf:type owl:ObjectProperty ;
-                rdfs:domain :Portata .
-
-
 ###  http://www.semanticweb.org/pisca/vinitaly#origina
-:origina rdf:type owl:ObjectProperty .
+:origina rdf:type owl:ObjectProperty ;
+         rdfs:comment "Inverso della proprietà \"origina\" collega quindi una Regione ai Vitigni che presenta"@it ;
+         rdfs:label "origina"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#portataAbbinataCon
@@ -88,32 +88,42 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                     owl:inverseOf :vinoAbbinatoCon ;
                     owl:propertyChainAxiom ( :tipoPortata
                                              :éConsigliato
-                                           ) .
+                                           ) ;
+                    rdfs:comment "Property chain per collegare una portata al tipo di vino che è consigliato consumare durante la stessa"@it ;
+                    rdfs:label "portata abbinata con"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#possedutaDa
 :possedutaDa rdf:type owl:ObjectProperty ;
              owl:inverseOf :éproprietarioDi ;
              rdfs:domain :Cantina ;
-             rdfs:range :Produttore .
+             rdfs:range :Produttore ;
+             rdfs:comment "Inversa di \" è proprietario di \", collega la cantina al produtture che ne è proprietario"@it ;
+             rdfs:label "posseduta da"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#prodottoDa
 :prodottoDa rdf:type owl:ObjectProperty ;
-            owl:inverseOf :produce .
+            owl:inverseOf :produce ;
+            rdfs:comment "Inversa della proprietà \"produce\", collega quindi un vino ai vitigni utilizzati per produrlo"@it ;
+            rdfs:label "prodotto da"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#produce
 :produce rdf:type owl:ObjectProperty ;
          rdfs:domain :Vitigno ;
-         rdfs:range :Vino .
+         rdfs:range :Vino ;
+         rdfs:comment "Collega un vitigno ad un vino da cui è prodotto"@it ;
+         rdfs:label "produce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#realizzatoDa
 :realizzatoDa rdf:type owl:ObjectProperty ;
               owl:propertyChainAxiom ( <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf>
                                        :possedutaDa
-                                     ) .
+                                     ) ;
+              rdfs:comment "Property chain per collegare un vino al suo produttore, passando per la cantina"@it ;
+              rdfs:label "realizzato da"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#somiglia
@@ -127,36 +137,48 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :tipoPortata rdf:type owl:ObjectProperty ,
                       owl:FunctionalProperty ;
              rdfs:domain :Portata ;
-             rdfs:range :TipoPortata .
+             rdfs:range :TipoPortata ;
+             rdfs:comment "Collega una portata (es: Bistecca di manzo) ad un tipo portata (es: Antipasto di carne, di pesce, ecc...)"@it ;
+             rdfs:label "tipo portata"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoAbbinatoA
 :vinoAbbinatoA rdf:type owl:ObjectProperty ;
-               owl:inverseOf :éConsigliato .
+               owl:inverseOf :éConsigliato ;
+               rdfs:comment "Inversa di \"è consigliato\", collega un tipo di vino (es: vino bianco leggero) al tipo di portata a cui si abbina meglio (es: antipasto di pesce)"@it ;
+               rdfs:label "vino abbinato a"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoAbbinatoCon
-:vinoAbbinatoCon rdf:type owl:ObjectProperty .
+:vinoAbbinatoCon rdf:type owl:ObjectProperty ;
+                 rdfs:comment "Inversa della proprietà \"portata abbinata con\", collega una portata (es: Bistecca di manzo) ad un tipo di vino consigliato (es: VinoRossoLeggero)"@it ;
+                 rdfs:label "vino abbinato con"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vinoOriginatoIn
 :vinoOriginatoIn rdf:type owl:ObjectProperty ;
                  owl:propertyChainAxiom ( :prodottoDa
                                           :haOrigineIn
-                                        ) .
+                                        );
+                 rdfs:comment "Property chain che collega un vino alla sua regione di origine, passando per il vitigno"@it ;
+                 rdfs:label "vino originato in"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#éConsigliato
 :éConsigliato rdf:type owl:ObjectProperty ,
                        owl:TransitiveProperty ;
               rdfs:domain :Portata ;
-              rdfs:range :Vino .
+              rdfs:range :Vino ;
+              rdfs:comment "Collega un tipo portata (es: Antipasto Carne, Primo di pesce) ad un tipo di vino consigliato (es: Vino bianco leggero)"@it ;
+              rdfs:label "é consigliato"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#éproprietarioDi
 :éproprietarioDi rdf:type owl:ObjectProperty ;
                  rdfs:domain :Produttore ;
-                 rdfs:range :Cantina .
+                 rdfs:range :Cantina ;
+                 rdfs:comment "Collega il produttore (es: San Marzano) alla cantina di cui è proprietario"@it ;
+                 rdfs:label "è proprietario di"@it .
 
 
 #################################################################
