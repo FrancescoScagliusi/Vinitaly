@@ -768,8 +768,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                         owl:hasValue "nera"
                                       ] ;
 
-                  rdfs:subClassOf :Vitigno .
-
                   rdfs:subClassOf :Vitigno ;
                   rdfs:comment "Classe per rappresentare un vitigno con colore bacca nera"@it ;
                   rdfs:label "Vitigno bacca nera"@it .
