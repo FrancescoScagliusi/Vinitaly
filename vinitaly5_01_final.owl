@@ -263,8 +263,34 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #    Classes
 #################################################################
 
+###  http://data.lirmm.fr/ontologies/food#Dish
+<http://data.lirmm.fr/ontologies/food#Dish> rdf:type owl:Class ;
+                                            owl:equivalentClass :Portata .
+
+
+###  http://rdfs.co/bevon/FruitWine
+<http://rdfs.co/bevon/FruitWine> rdf:type owl:Class ;
+                                 owl:equivalentClass :VinoAromatizzato .
+
+
+###  http://rdfs.co/bevon/RedWine
+<http://rdfs.co/bevon/RedWine> rdf:type owl:Class ;
+                               owl:equivalentClass :VinoRosso .
+
+
+###  http://rdfs.co/bevon/WhiteWine
+<http://rdfs.co/bevon/WhiteWine> rdf:type owl:Class ;
+                                 owl:equivalentClass :VinoBianco .
+
+
+###  http://rdfs.co/bevon/Wine
+<http://rdfs.co/bevon/Wine> rdf:type owl:Class ;
+                            owl:equivalentClass :Vino .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Aroma
 :Aroma rdf:type owl:Class ;
+       owl:equivalentClass <https://dbpedia.org/ontology/taste> ;
        rdfs:comment "Classe per rappresentare gli aromi che possono essere associati al vino"@it ;
        rdfs:label "Aroma"@it .
 
@@ -347,6 +373,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Cantina
 :Cantina rdf:type owl:Class ;
+         owl:equivalentClass <https://dbpedia.org/ontology/Winery> ;
          rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ;
          rdfs:comment "Classe per rappresentare una particolare cantina di un dato produttore, che conterrà un insieme di vini"@it ;
          rdfs:label "Cantina"@it .
@@ -417,7 +444,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Origine
 :Origine rdf:type owl:Class ;
-         owl:equivalentClass [ rdf:type owl:Class ;
+         owl:equivalentClass <https://dbpedia.org/page/Regions_of_Italy> ,
+                             [ rdf:type owl:Class ;
                                owl:oneOf ( :Abruzzo
                                            :Basilicata
                                            :Calabria
@@ -539,7 +567,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Vino
 :Vino rdf:type owl:Class ;
-      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+      owl:equivalentClass <https://dbpedia.org/ontology/Wine> ,
+                          [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                    owl:onProperty :vinoAbbinatoA ;
                                                    owl:someValuesFrom :Portata
                                                  ]
@@ -551,6 +580,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                                                ) ;
                             rdf:type owl:Class
                           ] ;
+      rdfs:subClassOf <https://dbpedia.org/ontology/Beverage> ;
       rdfs:comment "Classe che rappresenta l'entità Vino"@it ;
       rdfs:label "Vino"@it .
 
@@ -725,6 +755,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Vitigno
 :Vitigno rdf:type owl:Class ;
+         owl:equivalentClass <https://dbpedia.org/ontology/Grape> ;
          rdfs:comment "Classe per rappresentare un vitigno da cui è prodotto un vino"@it ;
          rdfs:label "Vitigno"@it .
 
@@ -771,6 +802,30 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                   rdfs:subClassOf :Vitigno ;
                   rdfs:comment "Classe per rappresentare un vitigno con colore bacca nera"@it ;
                   rdfs:label "Vitigno bacca nera"@it .
+
+
+###  https://dbpedia.org/ontology/Beverage
+<https://dbpedia.org/ontology/Beverage> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Grape
+<https://dbpedia.org/ontology/Grape> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Wine
+<https://dbpedia.org/ontology/Wine> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Winery
+<https://dbpedia.org/ontology/Winery> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/taste
+<https://dbpedia.org/ontology/taste> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/page/Regions_of_Italy
+<https://dbpedia.org/page/Regions_of_Italy> rdf:type owl:Class .
 
 
 #################################################################
