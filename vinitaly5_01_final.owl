@@ -207,7 +207,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#éConsigliato
 :éConsigliato rdf:type owl:ObjectProperty ;
-              rdfs:domain :Portata ;
+              rdfs:domain :TipoPortata ;
               rdfs:range :Vino ;
               rdfs:comment "Collega un tipo portata (es: Antipasto Carne, Primo di pesce) ad un tipo di vino consigliato (es: Vino bianco leggero)"@it ;
               rdfs:label "é consigliato"@it .
@@ -247,12 +247,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :gradoAlcolico rdf:type owl:DatatypeProperty ;
                rdfs:domain :Vino ;
                rdfs:range xsd:float .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#occasione
-:occasione rdf:type owl:DatatypeProperty ;
-           rdfs:domain :Vino ;
-           rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#pressione
@@ -919,15 +913,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#GrandeCuveéAlmaBrut
-:GrandeCuveéAlmaBrut rdf:type owl:NamedIndividual ,
-                              :VinoSpumante ;
+:GrandeCuveéAlmaBrut rdf:type owl:NamedIndividual ;
                      <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaBellavistaFranciacorta ;
+                     :haAroma :vaniglia ;
                      :haDosaggio :brut ;
+                     :momentoPerDegustarlo :aperitivo ,
+                                           :cenaTraAmici ;
                      :prodottoDa :vitignoChardonnay ;
                      :denominazione "Franciacorta Brut DOCG \"Grande Cuvée Alma Brut\" - Bellavista" ;
                      :gradoAlcolico "12.5"^^xsd:float ;
-                     :occasione "aperitivo" ,
-                                "cena tra amici" ;
+                     :pressione "4.0"^^xsd:float ;
                      :prezzo "26.9"^^xsd:float ;
                      rdfs:label "Grande Cuveé Alma Brut"@it .
 
@@ -972,10 +967,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :PrimitivoDiManduria rdf:type owl:NamedIndividual ,
                               :Vino ;
                      <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaSanMarzano ;
+                     :haAroma :ciliegia ,
+                              :vaniglia ;
                      :haDosaggio :secco ;
                      :prodottoDa :VitignoPrimitivo ;
-                     :gradoAlcolico "12.0"^^xsd:float ;
-                     :pressione "0.0"^^xsd:float .
+                     :annata "2020"^^xsd:string ;
+                     :denominazione "Primitivo di Manduria DOP \"Talò\" 2020 - San Marzano" ;
+                     :gradoAlcolico "14.0"^^xsd:float ;
+                     :pressione "0.0"^^xsd:float ;
+                     :prezzo "12.9"^^xsd:float .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Puglia
@@ -987,25 +987,45 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#PugliaMalvasiaNeraIGT
 :PugliaMalvasiaNeraIGT rdf:type owl:NamedIndividual ;
                        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaCoppi ;
+                       :haAroma :fruttiDiBosco ;
                        :haDosaggio :secco ;
+                       :momentoPerDegustarlo :pranzoInFamiglia ;
                        :prodottoDa :VitignoMalvasia ;
                        :somiglia :SalentoMalvasiaNeraIGP ;
                        :annata "2016"^^xsd:string ;
                        :denominazione "Puglia Malvasia Nera IGT \"Sannace\" 2016 - Coppi"^^xsd:string ;
                        :gradoAlcolico "12.0"^^xsd:float ;
-                       :pressione "0.0"^^xsd:float .
+                       :pressione "0.0"^^xsd:float ;
+                       :prezzo "10.8"^^xsd:float .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#SalentoBiancoPassoADue
+:SalentoBiancoPassoADue rdf:type owl:NamedIndividual ;
+                        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaDuePalme ;
+                        :haAroma :menta ;
+                        :haDosaggio :amabile ;
+                        :momentoPerDegustarlo :cenaTraAmici ;
+                        :prodottoDa :vitignoMalvasiaBianco ;
+                        :annata "2020"^^xsd:string ;
+                        :denominazione "Salento Bianco IGP \"Passo A Due\" 2020 - Due Palme" ;
+                        :gradoAlcolico "12.5"^^xsd:float ;
+                        :pressione "0.0"^^xsd:float ;
+                        :prezzo "9.0"^^xsd:float .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SalentoMalvasiaNeraIGP
 :SalentoMalvasiaNeraIGP rdf:type owl:NamedIndividual ;
                         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaSanMarzano ;
+                        :haAroma :fruttiDiBosco ;
                         :haDosaggio :secco ;
+                        :momentoPerDegustarlo :occasioneInformale ;
                         :prodottoDa :VitignoMalvasia ;
                         :somiglia :PrimitivoDiManduria ;
                         :annata "2019"^^xsd:string ;
                         :denominazione "Salento Malvasia Nera IGP \"Talò\" 2019 - San Marzano"^^xsd:string ;
                         :gradoAlcolico "13.5"^^xsd:float ;
-                        :pressione "0.0"^^xsd:float .
+                        :pressione "0.0"^^xsd:float ;
+                        :prezzo "10.9"^^xsd:float .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SanMarzano
@@ -1273,6 +1293,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
               :possedutaDa :Coppi .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#cantinaDuePalme
+:cantinaDuePalme rdf:type owl:NamedIndividual ;
+                 :possedutaDa :duePalme .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#cantinaSanMarzano
 :cantinaSanMarzano rdf:type owl:NamedIndividual ,
                             :Cantina .
@@ -1340,6 +1365,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :dry rdf:type owl:NamedIndividual ;
      rdfs:comment "tipo dosaggio per vini spumanti con zuccero residuo compreso tra 17 e 32 g/l"@it ;
      rdfs:label "dry"@en .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#duePalme
+:duePalme rdf:type owl:NamedIndividual ,
+                   :Produttore .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#erba_tagliata
@@ -1484,6 +1514,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    :coloreBacca "bianca" ;
                    rdfs:comment "vitigno di uve a bacca bianca denominate Chardonnay"@it ;
                    rdfs:label "vitigno Chardonnay"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#vitignoMalvasiaBianco
+:vitignoMalvasiaBianco rdf:type owl:NamedIndividual ;
+                       :haOrigineIn :Puglia ;
+                       :coloreBacca "bianca" .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoSangiovese
