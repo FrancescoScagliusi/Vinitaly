@@ -110,6 +110,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
              rdfs:domain :Vino .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#momentoPerDegustarlo
+:momentoPerDegustarlo rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Vino ;
+                      rdfs:range :Occasione ;
+                      rdfs:comment "Collega un vino all'occasione in cui viene degustato"@it ;
+                      rdfs:label "momento per degustarlo"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#origina
 :origina rdf:type owl:ObjectProperty ;
          rdfs:comment "Inverso della proprietà \"origina\" collega quindi una Regione ai Vitigni che presenta"@it ;
@@ -442,6 +450,23 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    rdfs:label "dosaggio vino fermo"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Occasione
+:Occasione rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:oneOf ( :aperitivo
+                                             :bicchiereQuotidiano
+                                             :cenaFormale
+                                             :cenaTraAmici
+                                             :cocktailParty
+                                             :occasioneFormale
+                                             :occasioneInformale
+                                             :pranzoInFamiglia
+                                           )
+                               ] ;
+           rdfs:comment "Classe per rappresentare il momento in cui degustare un vino"@it ;
+           rdfs:label "Occasione"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Origine
 :Origine rdf:type owl:Class ;
          owl:equivalentClass <https://dbpedia.org/page/Regions_of_Italy> ,
@@ -484,7 +509,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Produttore
 :Produttore rdf:type owl:Class ;
-
             owl:equivalentClass [ rdf:type owl:Class ;
                                   owl:unionOf ( [ rdf:type owl:Restriction ;
                                                   owl:onProperty :éproprietarioDi ;
@@ -782,23 +806,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                     rdfs:label "Vitigno bacca grigia"@it .
 
 
-
-###  http://www.semanticweb.org/pisca/vinitaly#VitignoBaccaGrigia
-:VitignoBaccaGrigia rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                          owl:onProperty :coloreBacca ;
-                                          owl:hasValue "grigia"
-                                        ] ;
-                    rdfs:subClassOf :Vitigno .
-
-
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoBaccaNera
 :VitignoBaccaNera rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
                                         owl:onProperty :coloreBacca ;
                                         owl:hasValue "nera"
                                       ] ;
-
                   rdfs:subClassOf :Vitigno ;
                   rdfs:comment "Classe per rappresentare un vitigno con colore bacca nera"@it ;
                   rdfs:label "Vitigno bacca nera"@it .
@@ -1024,28 +1037,47 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoAntipastoCarne
-:TipoAntipastoCarne rdf:type owl:NamedIndividual .
+:TipoAntipastoCarne rdf:type owl:NamedIndividual ;
+                    :éConsigliato :VinoRossoLeggero ;
+                    rdfs:comment "tipologia di abbinamento base carne"@it ;
+                    rdfs:label "antipasto di carne"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoAntipastoPesce
-:TipoAntipastoPesce rdf:type owl:NamedIndividual .
+:TipoAntipastoPesce rdf:type owl:NamedIndividual ;
+                    :éConsigliato :VinoBiancoLeggero ;
+                    rdfs:comment "tipologia di abbinamento base pesce"@it ;
+                    rdfs:label "antipasto di pesce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoPrimoPiattoCarne
 :TipoPrimoPiattoCarne rdf:type owl:NamedIndividual ;
-                      :éConsigliato :VinoRossoDiCorpo .
+                      :éConsigliato :VinoRosatoDiMedioCorpo ,
+                                    :VinoRossoDiCorpo ;
+                      rdfs:comment "tipologia di abbinamento base carne"@it ;
+                      rdfs:label "primo piatto di carne"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoPrimoPiattoPesce
-:TipoPrimoPiattoPesce rdf:type owl:NamedIndividual .
+:TipoPrimoPiattoPesce rdf:type owl:NamedIndividual ;
+                      :éConsigliato :VinoBiancoDiCorpo ;
+                      rdfs:comment "tipologia di abbinamento base pesce"@it ;
+                      rdfs:label "primo piatto di pesce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoSecondoPiattoCarne
-:TipoSecondoPiattoCarne rdf:type owl:NamedIndividual .
+:TipoSecondoPiattoCarne rdf:type owl:NamedIndividual ;
+                        :éConsigliato :VinoRossoDiCorpo ;
+                        rdfs:comment "tipologia di abbinamento base carne"@it ;
+                        rdfs:label "secondo piatto di carne"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoSecondoPiattoPesce
-:TipoSecondoPiattoPesce rdf:type owl:NamedIndividual .
+:TipoSecondoPiattoPesce rdf:type owl:NamedIndividual ;
+                        :éConsigliato :VinoBiancoDiCorpo ,
+                                      :VinoRosatoDiCorpo ;
+                        rdfs:comment "tipologia di abbinamento base pesce"@it ;
+                        rdfs:label "secondo piatto pesce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Toscana
@@ -1078,9 +1110,75 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
         rdfs:label "Veneto"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiCorpo
+:VinoBiancoDiCorpo rdf:type owl:NamedIndividual ,
+                            :VinoBianco ,
+                            :VinoDiCorpo .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiGrandeStruttura
+:VinoBiancoDiGrandeStruttura rdf:type owl:NamedIndividual ,
+                                      :VinoBianco ,
+                                      :VinoDiGrandeStruttura .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiMedioCorpo
+:VinoBiancoDiMedioCorpo rdf:type owl:NamedIndividual ,
+                                 :VinoBianco ,
+                                 :VinoDiMedioCorpo .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoLeggero
+:VinoBiancoLeggero rdf:type owl:NamedIndividual ,
+                            :VinoBianco ,
+                            :VinoLeggero .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiCorpo
+:VinoRosatoDiCorpo rdf:type owl:NamedIndividual ,
+                            :VinoDiCorpo ,
+                            :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiGrandeStruttura
+:VinoRosatoDiGrandeStruttura rdf:type owl:NamedIndividual ,
+                                      :VinoDiGrandeStruttura ,
+                                      :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiMedioCorpo
+:VinoRosatoDiMedioCorpo rdf:type owl:NamedIndividual ,
+                                 :VinoDiMedioCorpo ,
+                                 :VinoRosato .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoLeggero
+:VinoRosatoLeggero rdf:type owl:NamedIndividual ,
+                            :VinoLeggero ,
+                            :VinoRosato .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiCorpo
 :VinoRossoDiCorpo rdf:type owl:NamedIndividual ,
                            :VinoDiCorpo ,
+                           :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiGrandeStruttura
+:VinoRossoDiGrandeStruttura rdf:type owl:NamedIndividual ,
+                                     :VinoDiGrandeStruttura ,
+                                     :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiMedioCorpo
+:VinoRossoDiMedioCorpo rdf:type owl:NamedIndividual ,
+                                :VinoDiMedioCorpo ,
+                                :VinoRosso .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoLeggero
+:VinoRossoLeggero rdf:type owl:NamedIndividual ,
+                           :VinoLeggero ,
                            :VinoRosso .
 
 
@@ -1127,6 +1225,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :amabile rdf:type owl:NamedIndividual ;
          rdfs:comment "tipo dosaggio per vini fermi o frizzanti"@it ;
          rdfs:label "amabile"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#aperitivo
+:aperitivo rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#bicchiereQuotidiano
+:bicchiereQuotidiano rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#brut
@@ -1186,6 +1292,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
            rdfs:label "caramello"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#cenaFormale
+:cenaFormale rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#cenaTraAmici
+:cenaTraAmici rdf:type owl:NamedIndividual .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#chiodiDiGarofano
 :chiodiDiGarofano rdf:type owl:NamedIndividual ,
                            :AromaSecondarioLievito ;
@@ -1198,6 +1312,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                    :AromaPrimarioFrutta ;
           rdfs:comment "frutto del ciliegio"@it ;
           rdfs:label "ciliegia"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#cocktailParty
+:cocktailParty rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#demi-sec
@@ -1294,6 +1412,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
       rdfs:label "noci"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#occasioneFormale
+:occasioneFormale rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#occasioneInformale
+:occasioneInformale rdf:type owl:NamedIndividual .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#pepe_nero
 :pepe_nero rdf:type owl:NamedIndividual ,
                     :AromaSecondarioLievito ;
@@ -1313,6 +1439,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                 :AromaPrimarioFrutta ;
        rdfs:comment "frutto del pesco"@it ;
        rdfs:label "pesca"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#pranzoInFamiglia
+:pranzoInFamiglia rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#prezzemolo
@@ -1368,14 +1498,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 #    General axioms
 #################################################################
 
-
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :VitignoBaccaBianca
                 :VitignoBaccaGrigia
                 :VitignoBaccaNera
               )
 ] .
-
 
 
 [ rdf:type owl:AllDifferent ;
@@ -1424,6 +1552,18 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         :erba_tagliata
                         :menta
                         :prezzemolo
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :aperitivo
+                        :bicchiereQuotidiano
+                        :cenaFormale
+                        :cenaTraAmici
+                        :cocktailParty
+                        :occasioneFormale
+                        :occasioneInformale
                       )
 ] .
 
