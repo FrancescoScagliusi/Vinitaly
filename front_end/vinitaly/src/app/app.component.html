@@ -1,0 +1,31 @@
+<div class="wrapper">
+
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>VINITALY</h3>
+    </div>
+    <ul class="list-unstyled">
+      <li><a href="/elenco"  routerLink="elenco">Elenco Vini</a></li>
+      <li><a href="/portata"  routerLink="portata">Abbinamento Vini</a></li>
+      <li><a href="/somiglia"  routerLink="somiglia">Somiglianze Vini</a></li>
+      <li><a href="/occasione"  routerLink="occasione">Vini per occasione</a></li>
+      <li><a href="/cantina" routerLink="cantina">Vini per cantina</a></li>
+
+      <li><a href="/insert" routerLink="insert">Inserisci nuovo vino</a></li>
+      <li><a href="regione" routerLink="regione">Vini per regione</a></li>
+    </ul>
+  </nav>
+
+  <!-- Overlay  -->
+  <div id="overlay">
+    <div id="dismiss">
+      <i class="fas fa-arrow-left"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

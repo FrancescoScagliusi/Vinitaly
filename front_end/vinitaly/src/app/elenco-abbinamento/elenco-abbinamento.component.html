@@ -1,0 +1,115 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-auto">
+  <h4>Seleziona una pietanza: </h4>
+  <div class="search_panel">
+    <div class="row">
+      <form (ngSubmit)="search()">
+        <div class="form-group">
+          <div class="form-row">
+
+            <div class="col">
+              <label for="menu_pietanze">Pietanze</label>
+              <select class="form-control min-vw-100" id="menu_pietanze" style="width:auto;"  (change)="updatePietanza($event)">
+                <option value=" ">----</option>
+                <option *ngFor="let p of portate" [value]="p.uri">{{p.label}}</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <button type="submit" class="btn btn-primary" style="width:auto; ">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <h4>Elenco Vini consigliati</h4>
+
+  <div class="result_panel">
+
+    <ng-container *ngFor="let v of vini">
+      <div class="row">
+        <div class="col-auto">
+          <a>- {{v.label}}</a>
+        </div>
+        <div class="col-auto">
+          <a class="link" *ngIf="v.uri" (click)="showDetails(v.uri)">[VEDI INFO] </a>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+    </div>
+      <div class="col-auto" style="overflow-wrap: break-word;">
+
+        <div class="details"  *ngIf="infobox">
+          <h4>Dettagli Vino</h4>
+
+          <dl class="row-bottom-margin">
+            <dt>Denominazione</dt>
+            <dd>{{vino?.name}}</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Vitigno</dt>
+            <ng-container *ngFor="let v of vino?.vitigno">
+              <dd>{{v}}</dd>
+            </ng-container>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Origine</dt>
+            <dd>{{vino?.origine}}</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Grado Alcolemico</dt>
+            <dd>{{vino?.grado}} %</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Annata</dt>
+            <dd>{{vino?.annata}}</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Prezzo</dt>
+            <dd>{{vino?.prezzo}} €</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Dosaggio</dt>
+            <dd>{{vino?.dosaggio}}</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Aromi</dt>
+            <ng-container *ngFor="let v of vino?.aroma">
+              <dd>{{v}}</dd>
+            </ng-container>
+          </dl>
+
+          <dl class="row-bottom-margin">
+            <dt>Cantina</dt>
+            <dd>{{vino?.cantina}}</dd>
+          </dl>
+
+
+
+        </div>
+
+
+</div>
+  </div>
+</div>
+
+
+
+
+
