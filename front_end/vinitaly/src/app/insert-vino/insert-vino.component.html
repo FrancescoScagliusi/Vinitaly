@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="row">
+
+    <form (ngSubmit)="create()" name="form" #f="ngForm">
+
+      <div class="form-group">
+
+        <input type="text" class="form-control" placeholder="Denominazione vino *" value=""
+               name="name"
+               [(ngModel)]="form.name"
+               required
+               #name="ngModel"/>
+
+      </div>
+
+
+      <div class="form-group">
+        <div class="form-row">
+
+          <div class="col-auto">
+            <label for="menu_colore">Colore</label>
+            <select class="form-control" id="menu_colore" style="width:auto;" (change)="updateColore($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let c of colori" [value]="c.uri">{{c.label}}</option>
+            </select>
+          </div>
+
+          <div class="col-auto">
+            <label for="menu_struttura">Struttura</label>
+            <select class="form-control" id="menu_struttura" style="width:auto;" (change)="updateStruttura($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let s of strutture" [value]="s.uri">{{s.label}}</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="form-row">
+
+          <div class="col">
+            <label for="menu_vitigno">Vitigno</label>
+            <select class="form-control" id="menu_vitigno" style="width:auto;" (change)="updateVitigno($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let v of vitigni" [value]="v.uri">{{v.label}}</option>
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="menu_regione">Origine</label>
+            <select class="form-control" id="menu_regione" style="width:auto;" (change)="updateRegione($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let r of regioni" [value]="r.uri">{{r.label}}</option>
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="menu_cantina">Cantina</label>
+            <select class="form-control" id="menu_cantina" style="width:auto;" (change)="updateCantina($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let c of cantine" [value]="c.uri">{{c.label}}</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="form-row">
+
+          <div class="col-auto">
+            <label for="menu_aroma">Aroma</label>
+            <select class="form-control" id="menu_aroma" style="width:auto;" (change)="updateAroma($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let a of aromi" [value]="a.uri">{{a.label}}</option>
+            </select>
+          </div>
+
+          <div class="col-auto">
+            <label for="menu_dosaggio">Dosaggio</label>
+            <select class="form-control" id="menu_dosaggio" style="width:auto;" (change)="updateDosaggio($event)">
+              <option value=" ">----</option>
+              <option *ngFor="let d of dosaggi" [value]="d.uri">{{d.label}}</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-row">
+
+            <input type="text" class="form-control" placeholder="Pressione vino *" value=""
+                   name="pressione"
+                   [(ngModel)]="form.pressione"
+                   #pressione="ngModel"/>
+
+            <input type="text" class="form-control" placeholder="Grado alcolemico vino *" value=""
+                   name="grado"
+                   [(ngModel)]="form.grado"
+                   #grado="ngModel"/>
+
+            <input type="text" class="form-control" placeholder="Annata vino *" value=""
+                   name="annata"
+                   [(ngModel)]="form.annata"
+                   #annata="ngModel"/>
+
+            <input type="text" class="form-control" placeholder="Prezzo vino *" value=""
+                   name="prezzo"
+                   [(ngModel)]="form.prezzo"
+                   #prezzo="ngModel"/>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Crea Vino!</button>
+      </div>
+
+
+
+
+    </form>
+
+  </div>
+</div>

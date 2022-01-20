@@ -860,16 +860,21 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Bellavista
-:Bellavista rdf:type owl:NamedIndividual .
+:Bellavista rdf:type owl:NamedIndividual ;
+            rdfs:comment "Produttore Bellavista"@it ;
+            rdfs:label "Bellavista"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#BisteccaDiManzo
 :BisteccaDiManzo rdf:type owl:NamedIndividual ;
-                 :tipoPortata :TipoSecondoPiattoCarne .
+                 :tipoPortata :TipoSecondoPiattoCarne ;
+                 rdfs:comment "Secondo piatto consistente in una di bistecca di manzo"@it ;
+                 rdfs:label "Bistecca di Manzo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#BrunelloDiMontalcino
 :BrunelloDiMontalcino rdf:type owl:NamedIndividual ;
+                      <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaCastiglionDelBosco ;
                       :haAroma :ciliegia ,
                                :fruttiDiBosco ,
                                :viola ;
@@ -878,7 +883,10 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                       :annata "2016"^^xsd:string ;
                       :denominazione "Brunello di Montalcino DOCG 2016 Castiglion del Bosco" ;
                       :gradoAlcolico "14.0"^^xsd:float ;
-                      :pressione "0.0"^^xsd:float .
+                      :pressione "0.0"^^xsd:float ;
+                      :prezzo "49.5"^^xsd:float ;
+                      rdfs:comment "Vino Brunello di Montalcino"@it ;
+                      rdfs:label "Brunello di Montalcino"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Calabria
@@ -891,6 +899,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Campania rdf:type owl:NamedIndividual ;
           rdfs:comment "Regione italiana"@it ;
           rdfs:label "Campania"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#CastiglionDelBosco
+:CastiglionDelBosco rdf:type owl:NamedIndividual ;
+                    rdfs:comment "Produttore Castiglion Del Bosco"@it ;
+                    rdfs:label "Castiglion Del Bosco"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Coppi
@@ -920,6 +934,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                      :momentoPerDegustarlo :aperitivo ,
                                            :cenaTraAmici ;
                      :prodottoDa :vitignoChardonnay ;
+                     :annata "2021"^^xsd:string ;
                      :denominazione "Franciacorta Brut DOCG \"Grande Cuvée Alma Brut\" - Bellavista" ;
                      :gradoAlcolico "12.5"^^xsd:float ;
                      :pressione "4.0"^^xsd:float ;
@@ -975,7 +990,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                      :denominazione "Primitivo di Manduria DOP \"Talò\" 2020 - San Marzano" ;
                      :gradoAlcolico "14.0"^^xsd:float ;
                      :pressione "0.0"^^xsd:float ;
-                     :prezzo "12.9"^^xsd:float .
+                     :prezzo "12.9"^^xsd:float ;
+                     rdfs:label "Primitivo di Manduria"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Puglia
@@ -996,7 +1012,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                        :denominazione "Puglia Malvasia Nera IGT \"Sannace\" 2016 - Coppi"^^xsd:string ;
                        :gradoAlcolico "12.0"^^xsd:float ;
                        :pressione "0.0"^^xsd:float ;
-                       :prezzo "10.8"^^xsd:float .
+                       :prezzo "10.8"^^xsd:float ;
+                       rdfs:label "Puglia Malvasia Nera"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SalentoBiancoPassoADue
@@ -1010,7 +1027,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         :denominazione "Salento Bianco IGP \"Passo A Due\" 2020 - Due Palme" ;
                         :gradoAlcolico "12.5"^^xsd:float ;
                         :pressione "0.0"^^xsd:float ;
-                        :prezzo "9.0"^^xsd:float .
+                        :prezzo "9.0"^^xsd:float ;
+                        rdfs:label "Salento Passo a due bianco"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SalentoMalvasiaNeraIGP
@@ -1025,13 +1043,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         :denominazione "Salento Malvasia Nera IGP \"Talò\" 2019 - San Marzano"^^xsd:string ;
                         :gradoAlcolico "13.5"^^xsd:float ;
                         :pressione "0.0"^^xsd:float ;
-                        :prezzo "10.9"^^xsd:float .
+                        :prezzo "10.9"^^xsd:float ;
+                        rdfs:label "Salento Malvasia nera"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SanMarzano
 :SanMarzano rdf:type owl:NamedIndividual ,
                      :Produttore ;
-            :éproprietarioDi :cantinaSanMarzano .
+            :éproprietarioDi :cantinaSanMarzano ;
+            rdfs:comment "Pruduttore vinicolo San Marzano"@it ;
+            rdfs:label "San Marzano"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Sardegna
@@ -1048,12 +1069,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SpaghettiAllaBolognese
 :SpaghettiAllaBolognese rdf:type owl:NamedIndividual ;
-                        :tipoPortata :TipoPrimoPiattoCarne .
+                        :tipoPortata :TipoPrimoPiattoCarne ;
+                        rdfs:comment "Primo piatto consistente in spaghetti tipici alla bolognse"@it ;
+                        rdfs:label "Spaghetti alla Bolognese"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#SpaghettiAlleVongole
 :SpaghettiAlleVongole rdf:type owl:NamedIndividual ;
-                      :tipoPortata :TipoPrimoPiattoPesce .
+                      :tipoPortata :TipoPrimoPiattoPesce ;
+                      rdfs:comment "Primo piatto consistente in spaghetti con le vongole"@it ;
+                      rdfs:label "Spaghetti alle vongole"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoAntipastoCarne
@@ -1133,73 +1158,85 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiCorpo
 :VinoBiancoDiCorpo rdf:type owl:NamedIndividual ,
                             :VinoBianco ,
-                            :VinoDiCorpo .
+                            :VinoDiCorpo ;
+                   rdfs:label "Vino bianco di corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiGrandeStruttura
 :VinoBiancoDiGrandeStruttura rdf:type owl:NamedIndividual ,
                                       :VinoBianco ,
-                                      :VinoDiGrandeStruttura .
+                                      :VinoDiGrandeStruttura ;
+                             rdfs:label "Vino bianco di grande struttura"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoDiMedioCorpo
 :VinoBiancoDiMedioCorpo rdf:type owl:NamedIndividual ,
                                  :VinoBianco ,
-                                 :VinoDiMedioCorpo .
+                                 :VinoDiMedioCorpo ;
+                        rdfs:label "Vino bianco di medio corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoBiancoLeggero
 :VinoBiancoLeggero rdf:type owl:NamedIndividual ,
                             :VinoBianco ,
-                            :VinoLeggero .
+                            :VinoLeggero ;
+                   rdfs:label "Vino bianco leggero"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiCorpo
 :VinoRosatoDiCorpo rdf:type owl:NamedIndividual ,
                             :VinoDiCorpo ,
-                            :VinoRosato .
+                            :VinoRosato ;
+                   rdfs:label "Vino rosato di corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiGrandeStruttura
 :VinoRosatoDiGrandeStruttura rdf:type owl:NamedIndividual ,
                                       :VinoDiGrandeStruttura ,
-                                      :VinoRosato .
+                                      :VinoRosato ;
+                             rdfs:label "Vino rosato di grande struttura"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoDiMedioCorpo
 :VinoRosatoDiMedioCorpo rdf:type owl:NamedIndividual ,
                                  :VinoDiMedioCorpo ,
-                                 :VinoRosato .
+                                 :VinoRosato ;
+                        rdfs:label "Vino rosato di medio corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRosatoLeggero
 :VinoRosatoLeggero rdf:type owl:NamedIndividual ,
                             :VinoLeggero ,
-                            :VinoRosato .
+                            :VinoRosato ;
+                   rdfs:label "Vino rosato leggero"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiCorpo
 :VinoRossoDiCorpo rdf:type owl:NamedIndividual ,
                            :VinoDiCorpo ,
-                           :VinoRosso .
+                           :VinoRosso ;
+                  rdfs:label "Vino rosso di corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiGrandeStruttura
 :VinoRossoDiGrandeStruttura rdf:type owl:NamedIndividual ,
                                      :VinoDiGrandeStruttura ,
-                                     :VinoRosso .
+                                     :VinoRosso ;
+                            rdfs:label "Vino rosso di grande struttura"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoDiMedioCorpo
 :VinoRossoDiMedioCorpo rdf:type owl:NamedIndividual ,
                                 :VinoDiMedioCorpo ,
-                                :VinoRosso .
+                                :VinoRosso ;
+                       rdfs:label "Vino rosso di medio corpo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VinoRossoLeggero
 :VinoRossoLeggero rdf:type owl:NamedIndividual ,
                            :VinoLeggero ,
-                           :VinoRosso .
+                           :VinoRosso ;
+                  rdfs:label "Vino rosso leggero"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#VitignoMalvasia
@@ -1248,11 +1285,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#aperitivo
-:aperitivo rdf:type owl:NamedIndividual .
+:aperitivo rdf:type owl:NamedIndividual ;
+           rdfs:comment "Occasione di un aperitivo"@it ;
+           rdfs:label "Aperitivo"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#bicchiereQuotidiano
-:bicchiereQuotidiano rdf:type owl:NamedIndividual .
+:bicchiereQuotidiano rdf:type owl:NamedIndividual ;
+                     rdfs:comment "Occasione di un bicchiere quotidiano"@it ;
+                     rdfs:label "Bicchiere quotidiano"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#brut
@@ -1284,23 +1325,38 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cantinaBellavistaFranciacorta
 :cantinaBellavistaFranciacorta rdf:type owl:NamedIndividual ;
-                               :possedutaDa :Bellavista .
+                               :possedutaDa :Bellavista ;
+                               rdfs:comment "Cantina di Bellavista Franciacorta"@it ;
+                               rdfs:label "Bellavista Franciacorta"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#cantinaCastiglionDelBosco
+:cantinaCastiglionDelBosco rdf:type owl:NamedIndividual ;
+                           :possedutaDa :CastiglionDelBosco ;
+                           rdfs:comment "Cantina castiglio del bosco"@it ;
+                           rdfs:label "Castiglio Del Bosco"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cantinaCoppi
 :cantinaCoppi rdf:type owl:NamedIndividual ,
                        :Cantina ;
-              :possedutaDa :Coppi .
+              :possedutaDa :Coppi ;
+              rdfs:comment "Cantina Coppi"@it ;
+              rdfs:label "Coppi"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cantinaDuePalme
 :cantinaDuePalme rdf:type owl:NamedIndividual ;
-                 :possedutaDa :duePalme .
+                 :possedutaDa :duePalme ;
+                 rdfs:comment "Cantina Due Palme"@it ;
+                 rdfs:label "Due Palme"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cantinaSanMarzano
 :cantinaSanMarzano rdf:type owl:NamedIndividual ,
-                            :Cantina .
+                            :Cantina ;
+                   rdfs:comment "Cantina San Marzano"@it ;
+                   rdfs:label "San Marzano"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#caprifoglio
@@ -1318,11 +1374,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cenaFormale
-:cenaFormale rdf:type owl:NamedIndividual .
+:cenaFormale rdf:type owl:NamedIndividual ;
+             rdfs:comment "Occasione di una cena formale"@it ;
+             rdfs:label "Cena formale"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cenaTraAmici
-:cenaTraAmici rdf:type owl:NamedIndividual .
+:cenaTraAmici rdf:type owl:NamedIndividual ;
+              rdfs:comment "Occasione di una cena tra amici"@it ;
+              rdfs:label "Cena tra amici"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#chiodiDiGarofano
@@ -1340,7 +1400,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#cocktailParty
-:cocktailParty rdf:type owl:NamedIndividual .
+:cocktailParty rdf:type owl:NamedIndividual ;
+               rdfs:comment "Occasione di un cocktail party"@it ;
+               rdfs:label "Cocktail Party"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#demi-sec
@@ -1369,7 +1431,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#duePalme
 :duePalme rdf:type owl:NamedIndividual ,
-                   :Produttore .
+                   :Produttore ;
+          rdfs:comment "Produttore vinicolo due Palme"@it ;
+          rdfs:label "Due Palme"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#erba_tagliata
@@ -1443,11 +1507,15 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#occasioneFormale
-:occasioneFormale rdf:type owl:NamedIndividual .
+:occasioneFormale rdf:type owl:NamedIndividual ;
+                  rdfs:comment "Occasione di tipo formale"@it ;
+                  rdfs:label "Occasione Formale"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#occasioneInformale
-:occasioneInformale rdf:type owl:NamedIndividual .
+:occasioneInformale rdf:type owl:NamedIndividual ;
+                    rdfs:comment "Occasione di tipo informale"@it ;
+                    rdfs:label "Occasione Informale"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#pepe_nero
@@ -1472,7 +1540,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#pranzoInFamiglia
-:pranzoInFamiglia rdf:type owl:NamedIndividual .
+:pranzoInFamiglia rdf:type owl:NamedIndividual ;
+                  rdfs:comment "Occasione di un pranzo in famiglia"@it ;
+                  rdfs:label "Pranzo in famiglia"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#prezzemolo
@@ -1511,6 +1581,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoChardonnay
 :vitignoChardonnay rdf:type owl:NamedIndividual ;
+                   :haOrigineIn :Lombardia ;
                    :coloreBacca "bianca" ;
                    rdfs:comment "vitigno di uve a bacca bianca denominate Chardonnay"@it ;
                    rdfs:label "vitigno Chardonnay"@it .
@@ -1519,7 +1590,9 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoMalvasiaBianco
 :vitignoMalvasiaBianco rdf:type owl:NamedIndividual ;
                        :haOrigineIn :Puglia ;
-                       :coloreBacca "bianca" .
+                       :coloreBacca "bianca" ;
+                       rdfs:comment "vitigno Malvasia Bianco"@it ;
+                       rdfs:label "Malvasia Bianco"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoSangiovese

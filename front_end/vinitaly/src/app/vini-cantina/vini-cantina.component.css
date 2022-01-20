@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+.container{
+  margin: 30px
+}
+
+.search_panel{
+  margin: 20px;
+}
+
+.btn {
+  margin-top: 30px;
+}
+
+.p{
+  font-style: normal;
+  font-weight: 300;
+  font-size: 21px;
+}
+
+.h4{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.result_panel{
+  margin: 20px;
+}
+
+.row-bottom-margin { margin-bottom:20px; }
+
+.row-bottom-margin .dd{
+  display:block;
+}
+
+link:link {
+  text-decoration: none;
+}
+
+link:visited {
+  text-decoration: none;
+}
+
+link:hover {
+  text-decoration: underline;
+}
+
+link:active {
+  text-decoration: underline;
+}
+
