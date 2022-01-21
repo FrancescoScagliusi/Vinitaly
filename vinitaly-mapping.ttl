@@ -1,0 +1,87 @@
+@prefix : <http://www.semanticweb.org/pisca/vinitaly#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:MAPID-57840a9f604d48d49cc3c8a6fff2c967> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "select `nome_vitigno`,`coloreBacca` from `vinitaly`.`vitigno`"
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "coloreBacca";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :coloreBacca
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Vitigno;
+      rr:template "http://www.semanticweb.org/pisca/vinitaly#{nome_vitigno}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:MAPID-ec6fbf10c13e456997357e099a957993> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "select `nome_aroma` from `vinitaly`.`aroma`"
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Aroma;
+      rr:template "http://www.semanticweb.org/pisca/vinitaly#{nome_aroma}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:MAPID-a065ad92f4984a7cb7623792c7f27de1> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """select `nome_vino`,`denominazione`, `prezzo`, `pressione`, `annata`, `gradoAlcolico`, `nome_vitigno`, `nome_aroma` from `vinitaly`.`vino` 
+JOIN `vinitaly`.`vitigno` ON `vinitaly`.`vino`.`vitigno_id`=`vinitaly`.`vitigno`.`vitigno_id`
+JOIN `vinitaly`.`aromatizza` ON `vinitaly`.`vino`.`vino_id`=`vinitaly`.`aromatizza`.`vino_id`
+JOIN `vinitaly`.`aroma` ON `vinitaly`.`aromatizza`.`aroma_id`=`vinitaly`.`aroma`.`aroma_id`"""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "denominazione";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :denominazione
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "prezzo";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :prezzo
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "pressione";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :pressione
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "annata";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :annata
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "gradoAlcolico";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :gradoAlcolico
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://www.semanticweb.org/pisca/vinitaly#vitigno{nome_vitigno}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :prodottoDa
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://www.semanticweb.org/pisca/vinitaly#aroma{nome_aroma}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :haAroma
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Vino;
+      rr:template "http://www.semanticweb.org/pisca/vinitaly#{nome_vino}";
+      rr:termType rr:IRI
+    ] .

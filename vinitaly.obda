@@ -1,0 +1,26 @@
+[PrefixDeclaration]
+:		http://www.semanticweb.org/pisca/vinitaly#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPID-57840a9f604d48d49cc3c8a6fff2c967
+target		:{nome_vitigno} a :Vitigno ; :coloreBacca {coloreBacca} . 
+source		select `nome_vitigno`,`coloreBacca` from `vinitaly`.`vitigno`
+
+mappingId	MAPID-ec6fbf10c13e456997357e099a957993
+target		:{nome_aroma} a :Aroma . 
+source		select `nome_aroma` from `vinitaly`.`aroma`
+
+mappingId	MAPID-a065ad92f4984a7cb7623792c7f27de1
+target		:{nome_vino} a :Vino ; :denominazione {denominazione} ; :prezzo {prezzo} ; :pressione {pressione} ; :annata {annata} ; :gradoAlcolico {gradoAlcolico} ; :prodottoDa :vitigno{nome_vitigno} ; :haAroma :aroma{nome_aroma} . 
+source		select `nome_vino`,`denominazione`, `prezzo`, `pressione`, `annata`, `gradoAlcolico`, `nome_vitigno`, `nome_aroma` from `vinitaly`.`vino` 
+			JOIN `vinitaly`.`vitigno` ON `vinitaly`.`vino`.`vitigno_id`=`vinitaly`.`vitigno`.`vitigno_id`
+			JOIN `vinitaly`.`aromatizza` ON `vinitaly`.`vino`.`vino_id`=`vinitaly`.`aromatizza`.`vino_id`
+			JOIN `vinitaly`.`aroma` ON `vinitaly`.`aromatizza`.`aroma_id`=`vinitaly`.`aroma`.`aroma_id`
+]]
+
