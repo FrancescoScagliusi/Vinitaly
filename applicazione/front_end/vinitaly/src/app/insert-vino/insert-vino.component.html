@@ -1,5 +1,8 @@
 <div class="container">
+  <h4>Inserisci i dettagli: </h4>
+
   <div class="row">
+
 
     <form (ngSubmit)="create()" name="form" #f="ngForm">
 
@@ -40,7 +43,7 @@
 
         <div class="form-row">
 
-          <div class="col">
+          <div class="col-auto">
             <label for="menu_vitigno">Vitigno</label>
             <select class="form-control" id="menu_vitigno" style="width:auto;" (change)="updateVitigno($event)">
               <option value=" ">----</option>
@@ -48,7 +51,7 @@
             </select>
           </div>
 
-          <div class="col">
+          <div class="col-auto">
             <label for="menu_regione">Origine</label>
             <select class="form-control" id="menu_regione" style="width:auto;" (change)="updateRegione($event)">
               <option value=" ">----</option>
@@ -56,7 +59,7 @@
             </select>
           </div>
 
-          <div class="col">
+          <div class="col-auto">
             <label for="menu_cantina">Cantina</label>
             <select class="form-control" id="menu_cantina" style="width:auto;" (change)="updateCantina($event)">
               <option value=" ">----</option>
@@ -93,28 +96,35 @@
       <div class="form-group">
         <div class="form-row">
 
+          <div class="col">
             <input type="text" class="form-control" placeholder="Pressione vino *" value=""
                    name="pressione"
                    [(ngModel)]="form.pressione"
                    #pressione="ngModel"/>
+          </div>
 
+          <div class="col">
             <input type="text" class="form-control" placeholder="Grado alcolemico vino *" value=""
                    name="grado"
                    [(ngModel)]="form.grado"
                    #grado="ngModel"/>
+          </div>
 
+          <div class="col">
             <input type="text" class="form-control" placeholder="Annata vino *" value=""
                    name="annata"
                    [(ngModel)]="form.annata"
                    #annata="ngModel"/>
-
-            <input type="text" class="form-control" placeholder="Prezzo vino *" value=""
-                   name="prezzo"
-                   [(ngModel)]="form.prezzo"
-                   #prezzo="ngModel"/>
+          </div>
         </div>
       </div>
 
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Prezzo vino *" value=""
+               name="prezzo"
+               [(ngModel)]="form.prezzo"
+               #prezzo="ngModel"/>
+      </div>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Crea Vino!</button>

@@ -57,6 +57,11 @@
           </dl>
 
           <dl class="row-bottom-margin">
+            <dt>Tipo</dt>
+            <dd>{{vino?.colore}}, {{vino?.struttura}}</dd>
+          </dl>
+
+          <dl class="row-bottom-margin">
             <dt>Vitigno</dt>
             <ng-container *ngFor="let v of vino?.vitigno">
               <dd>{{v}}</dd>

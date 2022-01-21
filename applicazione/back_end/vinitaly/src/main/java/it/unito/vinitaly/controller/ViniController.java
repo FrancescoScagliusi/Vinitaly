@@ -89,7 +89,7 @@ public class ViniController {
 
 
         String strQuery  = Query.PREFIX +
-                "select ?nome ?origine ?grado ?pressione ?annata ?prezzo ?dosaggio ?cantina " +
+                "select ?nome ?colore ?struttura ?origine ?grado ?pressione ?annata ?prezzo ?dosaggio ?cantina " +
                 "where { " +
                 "<"+vino+ "> :denominazione ?nome . " +
                 "<"+vino+ "> :pressione ?pressione . " +
@@ -100,7 +100,13 @@ public class ViniController {
                 "?c rdfs:label ?cantina . " +
                 "<"+vino+ "> :haDosaggio ?d . " +
                 "?d rdfs:label ?dosaggio . " +
-                "<"+vino+ "> :vinoOriginatoIn ?o . " +
+                "<"+vino+ "> :vinoOriginatoIn ?o ." +
+                "<"+vino+ "> a ?cl . " +
+                "<"+vino+ "> a ?st . " +
+                "?cl sesame:directSubClassOf :ColoreVino . " +
+                "?st sesame:directSubClassOf :StrutturaVino . " +
+                "?cl rdfs:label ?colore . " +
+                "?st rdfs:label ?struttura . " +
                 "?o rdfs:label ?origine . }";
 
 
@@ -119,10 +125,12 @@ public class ViniController {
         String prezzo = Query.formatString(qs.get("?prezzo").toString());
         String dosaggio = Query.formatString(qs.get("?dosaggio").toString());
         String cantina = Query.formatString(qs.get("?cantina").toString());
+        String colore =  Query.formatString(qs.get("?colore").toString());
+        String struttura = Query.formatString(qs.get("?struttura").toString());
 
         queryExecution.close();
 
-        Vino v = new Vino(nome,aromi,origine,grado,pressione,annata,prezzo,dosaggio,cantina,vitigni,"","");
+        Vino v = new Vino(nome,aromi,origine,grado,pressione,annata,prezzo,dosaggio,cantina,vitigni,colore,struttura);
 
 
         return new ResponseEntity(v, HttpStatus.OK);
