@@ -809,13 +809,23 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
          rdfs:comment "Regione italiana"@it ;
          rdfs:label "Abruzzo"@it .
 
+
+###  http://www.semanticweb.org/pisca/vinitaly#AmbrogioeGiovanniForlani
+:AmbrogioeGiovanniForlani rdf:type owl:NamedIndividual ,
+                                   :Cantina ;
+                          :possedutaDa :Forlani ;
+                          rdfs:comment "cantina di Forlani"@it ;
+                          rdfs:label "Ambrogio e Giovanni Forlani"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Antinori
 :Antinori rdf:type owl:NamedIndividual ,
                    :Cantina ;
           :possedutaDa :Tormaresca ;
           rdfs:comment "cantina Antinori"@it ;
           rdfs:label "Antinori"@it .
-          
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#AntipastoOstriche
 :AntipastoOstriche rdf:type owl:NamedIndividual ,
                             :Portata ;
@@ -865,6 +875,7 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
           rdfs:comment "Regione italiana"@it ;
           rdfs:label "Calabria"@it .
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Calafuria
 :Calafuria rdf:type owl:NamedIndividual ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :Antinori ;
@@ -877,9 +888,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
            :denominazione "Salento Negroamaro Rosato IGT “Calafuria” 2021 - Tormaresca" ;
            :gradoAlcolico "1.0"^^xsd:float ,
                           "13.5"^^xsd:float ;
+           :pressione "0.0"^^xsd:float ;
            :prezzo "12.5"^^xsd:float ;
            rdfs:label "Calafuria"@it .
-           
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Campania
 :Campania rdf:type owl:NamedIndividual ;
           rdfs:comment "Regione italiana"@it ;
@@ -905,10 +918,18 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                 rdfs:label "Emilia Romagna"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Forlani
+:Forlani rdf:type owl:NamedIndividual ,
+                  :Produttore ;
+         rdfs:comment "azienda vinicola"@it ;
+         rdfs:label "Forlani"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Friuli-Venezia-Giulia
 :Friuli-Venezia-Giulia rdf:type owl:NamedIndividual ;
                        rdfs:comment "Regione italiana"@it ;
                        rdfs:label "Friuli Venezia Giulia"@it .
+
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Girofle
 :Girofle rdf:type owl:NamedIndividual ;
@@ -925,7 +946,8 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
          :pressione "0.0"^^xsd:float ;
          :prezzo "10.8"^^xsd:float ;
          rdfs:label "Girofle"@it .
-         
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#GrandeCuveéAlmaBrut
 :GrandeCuveéAlmaBrut rdf:type owl:NamedIndividual ;
                      <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaBellavistaFranciacorta ;
@@ -942,10 +964,55 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                      rdfs:label "Grande Cuveé Alma Brut"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#LaPietra
+:LaPietra rdf:type owl:NamedIndividual ;
+          <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :AmbrogioeGiovanniForlani ;
+          :haAroma :viola ;
+          :haDosaggio :secco ;
+          :momentoPerDegustarlo :cenaTraAmici ;
+          :prodottoDa :vitignoChardonnay ;
+          :annata "2018"^^xsd:string ;
+          :denominazione "Toscana IGT \"La Pietra\" 2018 - Tenute del Cabreo, Ambrogio e Giovanni Folonari"^^xsd:string ;
+          :gradoAlcolico "14.5"^^xsd:float ;
+          :pressione "0.0"^^xsd:float ;
+          :prezzo "25.5"^^xsd:float ;
+          rdfs:label "La Pietra"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Lazio
 :Lazio rdf:type owl:NamedIndividual ;
        rdfs:comment "Regione italiana"@it ;
        rdfs:label "Lazio"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#LeCoste
+:LeCoste rdf:type owl:NamedIndividual ,
+                  :Produttore ;
+         rdfs:comment "azienda vinicola"@it ;
+         rdfs:label "Le Coste"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#LeCosteBianco
+:LeCosteBianco rdf:type owl:NamedIndividual ;
+               <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :LeCostediGradoli ;
+               :haAroma :pesca ;
+               :haDosaggio :amabile ;
+               :momentoPerDegustarlo :occasioneInformale ;
+               :prodottoDa :vitignoVermentino ;
+               :annata "2019"^^xsd:string ;
+               :denominazione "Vino Bianco \"Le Coste Bianco\" 2019 - Le Coste"^^xsd:string ;
+               :gradoAlcolico "12.0"^^xsd:float ;
+               :pressione "1.0"^^xsd:float ;
+               :prezzo "27.0"^^xsd:float ;
+               rdfs:label "Le Coste Bianco"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#LeCostediGradoli
+:LeCostediGradoli rdf:type owl:NamedIndividual ,
+                           :Cantina ;
+                  :possedutaDa :LeCoste ;
+                  rdfs:comment "cantina di Le Coste"@it ;
+                  rdfs:label "Le Coste di Gradoli"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Liguria
@@ -1145,12 +1212,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         rdfs:comment "tipologia di abbinamento base pesce"@it ;
                         rdfs:label "secondo piatto pesce"@it .
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Tormaresca
 :Tormaresca rdf:type owl:NamedIndividual ,
                      :Produttore ;
             rdfs:comment "azienda vinicola"@it ;
             rdfs:label "Tormaresca"@it .
-            
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Toscana
 :Toscana rdf:type owl:NamedIndividual ;
          rdfs:comment "Regione italiana"@it ;
@@ -1620,19 +1689,29 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                        rdfs:comment "vitigno Malvasia Bianco"@it ;
                        rdfs:label "Malvasia Bianco"@it .
 
+
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoNegroamaroGrigio
 :vitignoNegroamaroGrigio rdf:type owl:NamedIndividual ;
                          :haOrigineIn :Puglia ;
                          :coloreBacca "grigia" ;
                          rdfs:comment "vitigno di uve a bacca grigia denominate Negroamaro"@it ;
                          rdfs:label "vitigno Negroamaro Grigio"@it .
-                         
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoSangiovese
 :vitignoSangiovese rdf:type owl:NamedIndividual ;
                    :haOrigineIn :Toscana ;
                    :coloreBacca "nera" ;
                    rdfs:comment "vitigno di uve a bacca nera denominate Sangiovese"@it ;
                    rdfs:label "vitigno Sangiovese"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#vitignoVermentino
+:vitignoVermentino rdf:type owl:NamedIndividual ;
+                   :haOrigineIn :Piemonte ;
+                   :coloreBacca "bianca" ;
+                   rdfs:comment "vitigno di uve a bacca bianca denominate Vermentino"@it ;
+                   rdfs:label "vitigno Vermentino"@it .
 
 
 #################################################################
