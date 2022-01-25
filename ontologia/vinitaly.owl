@@ -809,7 +809,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
          rdfs:comment "Regione italiana"@it ;
          rdfs:label "Abruzzo"@it .
 
-
+###  http://www.semanticweb.org/pisca/vinitaly#Antinori
+:Antinori rdf:type owl:NamedIndividual ,
+                   :Cantina ;
+          :possedutaDa :Tormaresca ;
+          rdfs:comment "cantina Antinori"@it ;
+          rdfs:label "Antinori"@it .
+          
 ###  http://www.semanticweb.org/pisca/vinitaly#AntipastoOstriche
 :AntipastoOstriche rdf:type owl:NamedIndividual ,
                             :Portata ;
@@ -859,7 +865,21 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
           rdfs:comment "Regione italiana"@it ;
           rdfs:label "Calabria"@it .
 
-
+###  http://www.semanticweb.org/pisca/vinitaly#Calafuria
+:Calafuria rdf:type owl:NamedIndividual ;
+           <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :Antinori ;
+           :haAroma :fruttiDiBosco ;
+           :haDosaggio :secco ;
+           :momentoPerDegustarlo :aperitivo ,
+                                 :occasioneInformale ;
+           :prodottoDa :vitignoNegroamaroGrigio ;
+           :annata "2021"^^xsd:string ;
+           :denominazione "Salento Negroamaro Rosato IGT “Calafuria” 2021 - Tormaresca" ;
+           :gradoAlcolico "1.0"^^xsd:float ,
+                          "13.5"^^xsd:float ;
+           :prezzo "12.5"^^xsd:float ;
+           rdfs:label "Calafuria"@it .
+           
 ###  http://www.semanticweb.org/pisca/vinitaly#Campania
 :Campania rdf:type owl:NamedIndividual ;
           rdfs:comment "Regione italiana"@it ;
@@ -890,7 +910,22 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                        rdfs:comment "Regione italiana"@it ;
                        rdfs:label "Friuli Venezia Giulia"@it .
 
-
+###  http://www.semanticweb.org/pisca/vinitaly#Girofle
+:Girofle rdf:type owl:NamedIndividual ;
+         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :SanMarzano ;
+         :haAroma :chiodiDiGarofano ,
+                  :rosa ;
+         :haDosaggio :secco ;
+         :momentoPerDegustarlo :cenaTraAmici ;
+         :prodottoDa :vitignoNegroamaroGrigio ;
+         :somiglia :Calafuria ;
+         :annata "2020"^^xsd:string ;
+         :denominazione "Rosato 'Girofle' Severino Garofano 2020"^^xsd:string ;
+         :gradoAlcolico "13.0"^^xsd:float ;
+         :pressione "0.0"^^xsd:float ;
+         :prezzo "10.8"^^xsd:float ;
+         rdfs:label "Girofle"@it .
+         
 ###  http://www.semanticweb.org/pisca/vinitaly#GrandeCuveéAlmaBrut
 :GrandeCuveéAlmaBrut rdf:type owl:NamedIndividual ;
                      <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :cantinaBellavistaFranciacorta ;
@@ -1110,7 +1145,12 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                         rdfs:comment "tipologia di abbinamento base pesce"@it ;
                         rdfs:label "secondo piatto pesce"@it .
 
-
+###  http://www.semanticweb.org/pisca/vinitaly#Tormaresca
+:Tormaresca rdf:type owl:NamedIndividual ,
+                     :Produttore ;
+            rdfs:comment "azienda vinicola"@it ;
+            rdfs:label "Tormaresca"@it .
+            
 ###  http://www.semanticweb.org/pisca/vinitaly#Toscana
 :Toscana rdf:type owl:NamedIndividual ;
          rdfs:comment "Regione italiana"@it ;
@@ -1580,7 +1620,13 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                        rdfs:comment "vitigno Malvasia Bianco"@it ;
                        rdfs:label "Malvasia Bianco"@it .
 
-
+###  http://www.semanticweb.org/pisca/vinitaly#vitignoNegroamaroGrigio
+:vitignoNegroamaroGrigio rdf:type owl:NamedIndividual ;
+                         :haOrigineIn :Puglia ;
+                         :coloreBacca "grigia" ;
+                         rdfs:comment "vitigno di uve a bacca grigia denominate Negroamaro"@it ;
+                         rdfs:label "vitigno Negroamaro Grigio"@it .
+                         
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoSangiovese
 :vitignoSangiovese rdf:type owl:NamedIndividual ;
                    :haOrigineIn :Toscana ;
