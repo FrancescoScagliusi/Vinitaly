@@ -709,7 +709,11 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :VinoRosato rdf:type owl:Class ;
             owl:equivalentClass [ rdf:type owl:Restriction ;
                                   owl:onProperty :prodottoDa ;
-                                  owl:someValuesFrom :VitignoBaccaGrigia
+                                  owl:someValuesFrom [ rdf:type owl:Class ;
+                                                       owl:unionOf ( :VitignoBaccaGrigia
+                                                                     :VitignoBaccaNera
+                                                                   )
+                                                     ]
                                 ] ;
             rdfs:subClassOf :ColoreVino ;
             rdfs:comment "Classe che rappresenta un vino di colore rosato"@it ;
@@ -810,6 +814,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
          rdfs:label "Abruzzo"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Antinori
+:Antinori rdf:type owl:NamedIndividual ,
+                   :Cantina ;
+          :possedutaDa :Tormaresca ;
+          rdfs:comment "cantina Antinori"@it ;
+          rdfs:label "Antinori"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#AntipastoOstriche
 :AntipastoOstriche rdf:type owl:NamedIndividual ,
                             :Portata ;
@@ -860,6 +872,22 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
           rdfs:label "Calabria"@it .
 
 
+###  http://www.semanticweb.org/pisca/vinitaly#Calafuria
+:Calafuria rdf:type owl:NamedIndividual ;
+           <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :Antinori ;
+           :haAroma :fruttiDiBosco ;
+           :haDosaggio :secco ;
+           :momentoPerDegustarlo :aperitivo ,
+                                 :occasioneInformale ;
+           :prodottoDa :vitignoNegroamaroGrigio ;
+           :annata "2021"^^xsd:string ;
+           :denominazione "Salento Negroamaro Rosato IGT “Calafuria” 2021 - Tormaresca" ;
+           :gradoAlcolico "1.0"^^xsd:float ,
+                          "13.5"^^xsd:float ;
+           :prezzo "12.5"^^xsd:float ;
+           rdfs:label "Calafuria"@it .
+
+
 ###  http://www.semanticweb.org/pisca/vinitaly#Campania
 :Campania rdf:type owl:NamedIndividual ;
           rdfs:comment "Regione italiana"@it ;
@@ -889,6 +917,23 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 :Friuli-Venezia-Giulia rdf:type owl:NamedIndividual ;
                        rdfs:comment "Regione italiana"@it ;
                        rdfs:label "Friuli Venezia Giulia"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Girofle
+:Girofle rdf:type owl:NamedIndividual ;
+         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :SanMarzano ;
+         :haAroma :chiodiDiGarofano ,
+                  :rosa ;
+         :haDosaggio :secco ;
+         :momentoPerDegustarlo :cenaTraAmici ;
+         :prodottoDa :vitignoNegroamaroGrigio ;
+         :somiglia :Calafuria ;
+         :annata "2020"^^xsd:string ;
+         :denominazione "Rosato 'Girofle' Severino Garofano 2020"^^xsd:string ;
+         :gradoAlcolico "13.0"^^xsd:float ;
+         :pressione "0.0"^^xsd:float ;
+         :prezzo "10.8"^^xsd:float ;
+         rdfs:label "Girofle"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#GrandeCuveéAlmaBrut
@@ -1046,20 +1091,6 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                       rdfs:label "Spaghetti alle vongole"@it .
 
 
-###  http://www.semanticweb.org/pisca/vinitaly#SpigolaAllaGriglia
-:SpigolaAllaGriglia rdf:type owl:NamedIndividual ;
-                    :tipoPortata :TipoSecondoPiattoPesce ;
-                    rdfs:comment "Secondo piatto di pesce consistente in una spigola cucinata alla griglia"@it ;
-                    rdfs:label "Spigola alla griglia"@it .
-
-
-###  http://www.semanticweb.org/pisca/vinitaly#TagliereDiSalumi
-:TagliereDiSalumi rdf:type owl:NamedIndividual ;
-                  :tipoPortata :TipoAntipastoCarne ;
-                  rdfs:comment "Antipasto di carne, consistente in un tagliere di vari salumi"@it ;
-                  rdfs:label "Tagliere di salumi"@it .
-
-
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoAntipastoCarne
 :TipoAntipastoCarne rdf:type owl:NamedIndividual ;
                     :éConsigliato :VinoRossoLeggero ;
@@ -1069,34 +1100,29 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoAntipastoPesce
 :TipoAntipastoPesce rdf:type owl:NamedIndividual ;
-                    :éConsigliato :VinoBiancoLeggero ,
-                                  :VinoRosatoLeggero ;
+                    :éConsigliato :VinoBiancoLeggero ;
                     rdfs:comment "tipologia di abbinamento base pesce"@it ;
                     rdfs:label "antipasto di pesce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoPrimoPiattoCarne
 :TipoPrimoPiattoCarne rdf:type owl:NamedIndividual ;
-                      :éConsigliato :VinoRosatoDiCorpo ,
-                                    :VinoRosatoDiMedioCorpo ,
-                                    :VinoRossoDiCorpo ,
-                                    :VinoRossoDiMedioCorpo ;
+                      :éConsigliato :VinoRosatoDiMedioCorpo ,
+                                    :VinoRossoDiCorpo ;
                       rdfs:comment "tipologia di abbinamento base carne"@it ;
                       rdfs:label "primo piatto di carne"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoPrimoPiattoPesce
 :TipoPrimoPiattoPesce rdf:type owl:NamedIndividual ;
-                      :éConsigliato :VinoBiancoDiCorpo ,
-                                    :VinoBiancoDiMedioCorpo ;
+                      :éConsigliato :VinoBiancoDiCorpo ;
                       rdfs:comment "tipologia di abbinamento base pesce"@it ;
                       rdfs:label "primo piatto di pesce"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoSecondoPiattoCarne
 :TipoSecondoPiattoCarne rdf:type owl:NamedIndividual ;
-                        :éConsigliato :VinoRossoDiCorpo ,
-                                      :VinoRossoDiGrandeStruttura ;
+                        :éConsigliato :VinoRossoDiCorpo ;
                         rdfs:comment "tipologia di abbinamento base carne"@it ;
                         rdfs:label "secondo piatto di carne"@it .
 
@@ -1104,11 +1130,16 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
 ###  http://www.semanticweb.org/pisca/vinitaly#TipoSecondoPiattoPesce
 :TipoSecondoPiattoPesce rdf:type owl:NamedIndividual ;
                         :éConsigliato :VinoBiancoDiCorpo ,
-                                      :VinoBiancoDiGrandeStruttura ,
-                                      :VinoRosatoDiCorpo ,
-                                      :VinoRosatoDiGrandeStruttura ;
+                                      :VinoRosatoDiCorpo ;
                         rdfs:comment "tipologia di abbinamento base pesce"@it ;
                         rdfs:label "secondo piatto pesce"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#Tormaresca
+:Tormaresca rdf:type owl:NamedIndividual ,
+                     :Produttore ;
+            rdfs:comment "azienda vinicola"@it ;
+            rdfs:label "Tormaresca"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#Toscana
@@ -1579,6 +1610,14 @@ xsd:short owl:equivalentClass [ rdf:type rdfs:Datatype ;
                        :coloreBacca "bianca" ;
                        rdfs:comment "vitigno Malvasia Bianco"@it ;
                        rdfs:label "Malvasia Bianco"@it .
+
+
+###  http://www.semanticweb.org/pisca/vinitaly#vitignoNegroamaroGrigio
+:vitignoNegroamaroGrigio rdf:type owl:NamedIndividual ;
+                         :haOrigineIn :Puglia ;
+                         :coloreBacca "grigia" ;
+                         rdfs:comment "vitigno di uve a bacca grigia denominate Negroamaro"@it ;
+                         rdfs:label "vitigno Negroamaro Grigio"@it .
 
 
 ###  http://www.semanticweb.org/pisca/vinitaly#vitignoSangiovese
