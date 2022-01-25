@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Entity} from "../model/entity";
 import {ViniService} from "../service/vini.service";
-import {OccasioneService} from "../service/occasione.service";
-import {PortateService} from "../service/portate.service";
 import {RegioneService} from "../service/regione.service";
 import {CantinaService} from "../service/cantina.service";
 import {VitignoService} from "../service/vitigno.service";
 import {AromaService} from "../service/aroma.service";
 import {DosaggioService} from "../service/dosaggio.service";
 import {Vino} from "../model/vino";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-insert-vino',
@@ -36,6 +35,7 @@ export class InsertVinoComponent implements OnInit {
     colore: null,
     struttura: null
   };
+
 
 
   //voci di menù dei colori di un vino (con label e uri)
@@ -188,5 +188,4 @@ export class InsertVinoComponent implements OnInit {
     );
 
   }
-
 }

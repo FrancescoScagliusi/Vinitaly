@@ -4,7 +4,7 @@
   <div class="row">
 
 
-    <form (ngSubmit)="create()" name="form" #f="ngForm">
+    <form (ngSubmit)="create();  myForm.resetForm();" name="form" #myForm="ngForm">
 
       <div class="form-group">
 
